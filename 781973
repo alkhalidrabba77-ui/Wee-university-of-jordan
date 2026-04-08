@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>مركز المياه والبيئة والطاقة — نظام الإدارة الرقمية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,body,html{font-family:'Tajawal',sans-serif!important;box-sizing:border-box;margin:0;padding:0;}
+body{overflow:hidden;background:#030b18;}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:#030b18}
+::-webkit-scrollbar-thumb{background:#1a7a8a;border-radius:10px}
+.nc{transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.nc:hover{transform:translateY(-4px)}
+.sl{transition:all .2s ease;border-right:3px solid transparent;cursor:pointer;white-space:nowrap;}
+.sl:hover{background:rgba(26,122,138,.12);border-right-color:#1a7a8a}
+.sl.act{background:rgba(26,122,138,.2);border-right-color:#38bdf8;color:#38bdf8}
+.mb{backdrop-filter:blur(14px);background:rgba(3,11,24,.9)}
+.gc{background:rgba(8,18,36,.8);backdrop-filter:blur(16px);border:1px solid rgba(26,122,138,.22);border-radius:16px}
+.gb{background:linear-gradient(135deg,#0e7490,#38bdf8);color:#fff;font-weight:800;border:none;cursor:pointer;transition:all .2s ease;border-radius:10px;font-family:'Tajawal',sans-serif!important;}
+.gb:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(56,189,248,.4)}
+.rb{background:linear-gradient(135deg,#dc2626,#ef4444);color:#fff;font-weight:800;border:none;cursor:pointer;transition:all .2s ease;border-radius:10px;font-family:'Tajawal',sans-serif!important;}
+.rb:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(239,68,68,.4)}
+.eb{background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-weight:800;border:none;cursor:pointer;transition:all .2s ease;border-radius:10px;font-family:'Tajawal',sans-serif!important;}
+.eb:hover{transform:translateY(-2px)}
+@keyframes fiu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sir{from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:translateX(0)}}
+@keyframes wv{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.6)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.fiu{animation:fiu .38s ease forwards}
+.sir{animation:sir .3s ease forwards}
+input,textarea,select{font-family:'Tajawal',sans-serif!important;outline:none;}
+.inp{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(26,122,138,.25);border-radius:10px;padding:10px 14px;color:#e2e8f0;font-size:14px;transition:all .2s;font-family:'Tajawal',sans-serif!important;}
+.inp:focus{border-color:#38bdf8;background:rgba(56,189,248,.06);box-shadow:0 0 0 3px rgba(56,189,248,.1)}
+.sel{width:100%;background:#060f1e;border:1px solid rgba(26,122,138,.25);border-radius:10px;padding:10px 14px;color:#e2e8f0;font-size:14px;font-family:'Tajawal',sans-serif!important;}
+.lbl{color:#94a3b8;font-size:13px;margin-bottom:6px;display:block;font-weight:600}
+.mc{background:rgba(8,18,36,.7);border:1px solid rgba(26,122,138,.15);border-radius:14px;padding:18px;transition:all .3s ease}
+.mc:hover{border-color:rgba(56,189,248,.3);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.28)}
+.pb{height:7px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden}
+.pf{height:100%;border-radius:4px;transition:width 1.2s ease}
+.bdg{position:absolute;top:-5px;right:-5px;width:19px;height:19px;border-radius:50%;background:#ef4444;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:800;border:2px solid #030b18}
+.toast-wrap{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:9999;padding:12px 22px;border-radius:14px;color:#fff;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 20px 60px rgba(0,0,0,.6);font-size:14px;min-width:240px;justify-content:center;animation:sir .3s ease}
+.ts{background:linear-gradient(135deg,#059669,#10b981)}
+.te{background:linear-gradient(135deg,#dc2626,#ef4444)}
+.ti{background:linear-gradient(135deg,#0e7490,#38bdf8)}
+.tw{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.pr-ring{border:2.5px solid transparent;background-image:linear-gradient(#0d1e38,#0d1e38),linear-gradient(135deg,#0e7490,#38bdf8);background-origin:border-box;background-clip:padding-box,border-box;border-radius:50%;overflow:hidden;flex-shrink:0}
+.chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;gap:4px}
+.ce{background:rgba(56,189,248,.18);color:#38bdf8;border:1px solid rgba(56,189,248,.35)}
+.cs{background:rgba(16,185,129,.18);color:#34d399;border:1px solid rgba(16,185,129,.35)}
+.cm{background:rgba(168,85,247,.18);color:#d8b4fe;border:1px solid rgba(168,85,247,.35)}
+.cf{background:rgba(245,158,11,.18);color:#fcd34d;border:1px solid rgba(245,158,11,.35)}
+.ss-lbl{color:#475569;font-size:10px;font-weight:800;letter-spacing:1px;padding:12px 16px 4px;text-transform:uppercase;display:block}
+.cbu{background:linear-gradient(135deg,#0e7490,#0891b2);color:#fff;border-radius:18px 18px 4px 18px;padding:11px 16px;max-width:75%;font-size:13.5px;line-height:1.6;align-self:flex-end}
+.cbb{background:rgba(15,25,50,.9);border:1px solid rgba(56,189,248,.2);color:#e2e8f0;border-radius:18px 18px 18px 4px;padding:11px 16px;max-width:80%;font-size:13.5px;line-height:1.7;align-self:flex-start}
+.fc{background:rgba(8,18,36,.85);border:1px solid rgba(26,122,138,.18);border-radius:12px;padding:14px;cursor:pointer;transition:all .25s ease;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.fc:hover{border-color:#38bdf8;background:rgba(56,189,248,.07);transform:translateY(-3px)}
+.wbg{background:radial-gradient(ellipse at 20% 80%,rgba(14,116,144,.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(8,145,178,.08) 0%,transparent 50%),linear-gradient(180deg,#030b18 0%,#050e1d 100%)}
+.overlay{position:fixed;inset:0;z-index:50;backdrop-filter:blur(14px);background:rgba(3,11,24,.9);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;}
+.modal-box{width:100%;max-width:520px;padding:28px;border:1px solid rgba(56,189,248,.3);border-radius:18px;background:rgba(8,18,36,.95);max-height:90vh;overflow-y:auto;animation:fiu .38s ease;margin:auto}
+@media(max-width:768px){
+  .sidebar{display:none}
+  .sidebar.open{display:flex}
+  .modal-box{max-width:100%;padding:20px}
+}
+</style>
+</head>
+<body>
+<div id="root" class="wbg" style="height:100vh;overflow:hidden;color:#e2e8f0"></div>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+const{useState,useEffect,useRef,useCallback}=React;
+
+/* ── helpers ── */
+let _id=900;
+const uid=()=>`i${++_id}`;
+const nowStr=()=>new Date().toLocaleDateString('ar-SA',{year:'numeric',month:'long',day:'numeric'});
+const cloneTree=n=>({...n,children:(n.children||[]).map(cloneTree)});
+const updNode=(t,id,u)=>t.id===id?{...t,...u}:{...t,children:(t.children||[]).map(c=>updNode(c,id,u))};
+const delNode=(t,id)=>({...t,children:(t.children||[]).filter(c=>c.id!==id).map(c=>delNode(c,id))});
+const addChild=(t,pid,ch)=>t.id===pid?{...t,children:[...(t.children||[]),ch]}:{...t,children:(t.children||[]).map(c=>addChild(c,pid,ch))};
+const findNode=(t,id)=>{if(t.id===id)return t;for(const c of(t.children||[])){const f=findNode(c,id);if(f)return f;}return null;};
+const flatTree=t=>[t,...(t.children||[]).flatMap(flatTree)];
+const fmtSize=b=>b<1024?`${b}B`:b<1048576?`${(b/1024).toFixed(1)}KB`:`${(b/1048576).toFixed(1)}MB`;
+
+const LVLMAP={
+  executive:{label:'تنفيذي',cls:'ce',accent:'#38bdf8',border:'rgba(56,189,248,.45)',bg:'rgba(56,189,248,.07)'},
+  senior:{label:'أول',cls:'cs',accent:'#34d399',border:'rgba(16,185,129,.45)',bg:'rgba(16,185,129,.07)'},
+  manager:{label:'مدير',cls:'cm',accent:'#d8b4fe',border:'rgba(168,85,247,.45)',bg:'rgba(168,85,247,.07)'},
+  staff:{label:'موظف',cls:'cf',accent:'#fcd34d',border:'rgba(245,158,11,.45)',bg:'rgba(245,158,11,.07)'},
+};
+
+const FILE_EXT={pdf:'📄',doc:'📝',docx:'📝',xls:'📊',xlsx:'📊',ppt:'📊',pptx:'📊',jpg:'🖼️',jpeg:'🖼️',png:'🖼️',gif:'🖼️',mp4:'🎬',mp3:'🎵',zip:'🗜️',rar:'🗜️',txt:'📃'};
+const getFI=name=>{const e=(name||'').split('.').pop().toLowerCase();return FILE_EXT[e]||'📁';};
+
+const INIT_ORG={id:'root',role:'مدير المركز',name:'أ.د. خلدون شطناوي',dept:'الإدارة العليا',level:'executive',photo:null,docs:[],email:'director@ju.edu.jo',phone:'',notes:'',
+  children:[
+    {id:'asst',role:'مساعد مدير المركز',name:'',dept:'الإدارة',level:'senior',photo:null,docs:[],email:'',phone:'',notes:'',
+      children:[
+        {id:'rh',role:'رئيس شعبة الباحثين',name:'د. خالد رباع',dept:'شعبة الباحثين',level:'manager',photo:null,docs:[],email:'',phone:'',notes:'',children:[]},
+        {id:'th',role:'رئيس شعبة الدعم الفني',name:'',dept:'شعبة الدعم الفني',level:'manager',photo:null,docs:[],email:'',phone:'',notes:'',children:[]},
+      ]
+    },
+    {id:'dw',role:'رئيس الديوان',name:'',dept:'الديوان',level:'manager',photo:null,docs:[],email:'',phone:'',notes:'',
+      children:[
+        {id:'s1',role:'أمينة المكتب',name:'',dept:'الديوان',level:'staff',photo:null,docs:[],email:'',phone:'',notes:'',children:[]},
+        {id:'s2',role:'أمينة المكتب',name:'',dept:'الديوان',level:'staff',photo:null,docs:[],email:'',phone:'',notes:'',children:[]},
+      ]
+    },
+    {id:'lab',role:'مشرف المختبر',name:'',dept:'المختبر',level:'staff',photo:null,docs:[],email:'',phone:'',notes:'',children:[]},
+    {id:'ow',role:'عامل مكتب',name:'',dept:'الخدمات',level:'staff',photo:null,docs:[],email:'',phone:'',notes:'',children:[]},
+  ]
+};
+
+const INIT_RESEARCHERS=[
+  {id:'r1',name:'د. خالد رباع',title:'رئيس شعبة الباحثين',specialty:'هندسة البيئة',degree:'دكتوراه',university:'الجامعة الأردنية',email:'k.rabba@ju.edu.jo',phone:'',publications:12,projects:5,photo:null,docs:[],joinDate:'2018',status:'نشط',bio:'متخصص في معالجة المياه وتقنيات التحلية'},
+  {id:'r2',name:'',title:'باحث أول',specialty:'الطاقة المتجددة',degree:'دكتوراه',university:'',email:'',phone:'',publications:0,projects:0,photo:null,docs:[],joinDate:'',status:'شاغر',bio:''},
+  {id:'r3',name:'',title:'باحث مشارك',specialty:'علوم البيئة',degree:'ماجستير',university:'',email:'',phone:'',publications:0,projects:0,photo:null,docs:[],joinDate:'',status:'شاغر',bio:''},
+];
+
+const INIT_SOCIAL=[
+  {id:'s1',platform:'واتساب',url:'https://wa.me/962795000000',icon:'📱',color:'#25d366',active:true},
+  {id:'s2',platform:'فيسبوك',url:'https://facebook.com/wee.ju',icon:'📘',color:'#1877f2',active:true},
+  {id:'s3',platform:'تويتر / X',url:'https://twitter.com/wee_ju',icon:'🐦',color:'#1da1f2',active:true},
+  {id:'s4',platform:'لينكد إن',url:'https://linkedin.com/company/wee-ju',icon:'💼',color:'#0077b5',active:true},
+  {id:'s5',platform:'يوتيوب',url:'https://youtube.com/@weejordan',icon:'▶️',color:'#ff0000',active:false},
+  {id:'s6',platform:'إنستغرام',url:'https://instagram.com/wee_ju',icon:'📷',color:'#e1306c',active:false},
+  {id:'s7',platform:'تيليغرام',url:'https://t.me/wee_ju',icon:'✈️',color:'#0088cc',active:false},
+];
+
+const INIT_FILES=[
+  {id:'f1',name:'خطة العمل السنوية 2025.pdf',size:2457600,folder:'وثائق إدارية',date:nowStr(),preview:null},
+  {id:'f2',name:'تقرير الأداء الربعي Q1.xlsx',size:512000,folder:'تقارير',date:nowStr(),preview:null},
+  {id:'f3',name:'دليل الإجراءات الإدارية.docx',size:1024000,folder:'أدلة وسياسات',date:nowStr(),preview:null},
+  {id:'f4',name:'مدونة السلوك الوظيفي.pdf',size:890000,folder:'أدلة وسياسات',date:nowStr(),preview:null},
+  {id:'f5',name:'بيانات أبحاث المياه 2024.xlsx',size:3145728,folder:'بيانات بحثية',date:nowStr(),preview:null},
+];
+const FOLDERS=['الكل','وثائق إدارية','تقارير','أدلة وسياسات','وسائط','بيانات بحثية','مستندات موظفين'];
+
+const NAV=[
+  {sec:'الرئيسية',items:[{id:'dash',label:'لوحة التحكم',e:'🏠'},{id:'org',label:'الهيكل التنظيمي',e:'🏢'},{id:'researchers',label:'شعبة الباحثين',e:'🔬'},{id:'vision',label:'الرؤيا والرسالة',e:'🌟'}]},
+  {sec:'الخدمات',items:[{id:'complaints',label:'صندوق الشكاوي',e:'📨'},{id:'inquiries',label:'الاستفسارات',e:'❓'},{id:'satisfaction',label:'الرضا الوظيفي',e:'😊'},{id:'maintenance',label:'طلبات الصيانة',e:'🔧'},{id:'community',label:'خدمة المجتمع',e:'🌍'}]},
+  {sec:'التخطيط والجودة',items:[{id:'challenges',label:'التحديات المتوقعة',e:'⚡'},{id:'improvement',label:'خطة التحسين',e:'📈'},{id:'targets',label:'النتائج المستهدفة',e:'🎯'},{id:'goals',label:'الأهداف المرجوة',e:'⭐'},{id:'quality',label:'متطلبات الجودة',e:'🏆'},{id:'integrity',label:'معايير النزاهة',e:'⚖️'}]},
+  {sec:'الإدارة الرقمية',items:[{id:'files',label:'إدارة الملفات',e:'📁'},{id:'transfer',label:'تصدير واستيراد',e:'🔄'},{id:'voice',label:'الصوت والترجمة',e:'🎙️'},{id:'aichats',label:'سجل المحادثات',e:'💬'},{id:'social',label:'التواصل الاجتماعي',e:'📲'},{id:'chatbot',label:'المساعد الذكي',e:'🤖'},{id:'conduct',label:'مدونة السلوك',e:'📜'},{id:'settings',label:'الإعدادات',e:'⚙️'}]},
+];
+
+/* ── Toast ── */
+function Toast({t,onClose}){
+  useEffect(()=>{if(!t)return;const tm=setTimeout(onClose,3800);return()=>clearTimeout(tm);},[t]);
+  if(!t)return null;
+  const cls={success:'ts',error:'te',info:'ti',warning:'tw'}[t.type]||'ti';
+  const e={success:'✅',error:'❌',info:'ℹ️',warning:'⚠️'}[t.type]||'ℹ️';
+  return <div className={`toast-wrap ${cls}`}>{e} {t.msg}</div>;
+}
+
+/* ── Modal ── */
+function Modal({onClose,children,title,maxW=520}){
+  return(
+    <div className="overlay" onClick={onClose}>
+      <div className="modal-box" style={{maxWidth:maxW}} onClick={e=>e.stopPropagation()}>
+        {title&&<div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:20}}>
+          <h2 style={{color:'#38bdf8',fontSize:18,fontWeight:900}}>{title}</h2>
+          <button onClick={onClose} style={{background:'rgba(255,255,255,.07)',border:'none',borderRadius:8,padding:'6px 11px',cursor:'pointer',color:'#94a3b8',fontSize:16}}>✕</button>
+        </div>}
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ── OrgCard ── */
+function OrgCard({node,onEdit,onDelete,onAdd,onPhoto,onDoc,isRoot}){
+  const [hov,setHov]=useState(false);
+  const pRef=useRef(),dRef=useRef();
+  const lc=LVLMAP[node.level]||LVLMAP.staff;
+  const handleP=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>onPhoto(node.id,ev.target.result);r.readAsDataURL(f);};
+  const handleD=e=>{const fs=Array.from(e.target.files);if(!fs.length)return;onDoc(node.id,fs.map(f=>f.name));};
+  return(
+    <div className="nc" onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
+      style={{background:lc.bg,border:`2px solid ${hov?lc.accent:lc.border}`,borderRadius:16,padding:'14px 16px',minWidth:160,maxWidth:200,textAlign:'center',position:'relative',boxShadow:hov?`0 14px 44px ${lc.border}`:'0 4px 18px rgba(0,0,0,.28)'}}>
+      {hov&&<div style={{position:'absolute',top:-40,left:'50%',transform:'translateX(-50%)',display:'flex',gap:5,zIndex:10,background:'rgba(3,11,24,.95)',borderRadius:10,padding:'5px 8px',border:'1px solid rgba(56,189,248,.2)',whiteSpace:'nowrap'}}>
+        {[{e:'✏️',fn:()=>onEdit(node),t:'تعديل',bg:'#0e7490'},{e:'📷',fn:()=>pRef.current?.click(),t:'صورة',bg:'#059669'},{e:'📎',fn:()=>dRef.current?.click(),t:'مستند',bg:'#7c3aed'},{e:'➕',fn:()=>onAdd(node),t:'إضافة',bg:'#0e7490'}].map(({e,fn,t,bg},i)=>(
+          <button key={i} onClick={fn} title={t} style={{border:'none',borderRadius:7,padding:'4px 8px',cursor:'pointer',color:'#fff',background:bg,fontSize:13}}>{e}</button>
+        ))}
+        {!isRoot&&<button onClick={()=>onDelete(node)} title="حذف" style={{background:'#dc2626',border:'none',borderRadius:7,padding:'4px 8px',cursor:'pointer',color:'#fff',fontSize:13}}>🗑️</button>}
+      </div>}
+      <input ref={pRef} type="file" accept="image/*" style={{display:'none'}} onChange={handleP} capture="user"/>
+      <input ref={dRef} type="file" multiple style={{display:'none'}} onChange={handleD}/>
+      <div style={{display:'flex',justifyContent:'center',marginBottom:8}}>
+        <div className="pr-ring" style={{width:56,height:56,cursor:'pointer'}} onClick={()=>pRef.current?.click()}>
+          {node.photo?<img src={node.photo} alt={node.name} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+          :<div style={{width:'100%',height:'100%',background:`linear-gradient(135deg,${lc.bg},rgba(0,0,0,.2))`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:22}}>👤</div>}
+        </div>
+      </div>
+      <div style={{display:'flex',justifyContent:'center',marginBottom:5}}><span className={`chip ${lc.cls}`}>{lc.label}</span></div>
+      <div style={{color:lc.accent,fontWeight:800,fontSize:11.5,marginBottom:4,lineHeight:1.4}}>{node.role}</div>
+      <div style={{color:node.name?'#e2e8f0':'#475569',fontSize:11.5,fontWeight:node.name?600:400}}>{node.name||'لم يُحدَّد بعد'}</div>
+      {node.dept&&<div style={{color:'#64748b',fontSize:11,marginTop:2}}>{node.dept}</div>}
+      {node.docs?.length>0&&<div style={{marginTop:6}}><span style={{background:'rgba(124,58,237,.25)',color:'#d8b4fe',fontSize:10,padding:'2px 7px',borderRadius:20}}>📎{node.docs.length}</span></div>}
+    </div>
+  );
+}
+
+function OrgTree({node,actions,isRoot=false}){
+  const ch=node.children||[];
+  return(
+    <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+      <OrgCard node={node} isRoot={isRoot} {...actions}/>
+      {ch.length>0&&<>
+        <div style={{width:2,height:24,background:'linear-gradient(to bottom,#38bdf8,rgba(56,189,248,.2))'}}/>
+        <div style={{position:'relative',display:'flex',alignItems:'flex-start'}}>
+          {ch.length>1&&<div style={{position:'absolute',top:0,left:'8%',right:'8%',height:2,background:'linear-gradient(90deg,rgba(56,189,248,0),#38bdf8,rgba(56,189,248,0))',pointerEvents:'none'}}/>}
+          {ch.map(c=>(
+            <div key={c.id} style={{display:'flex',flexDirection:'column',alignItems:'center',padding:'0 10px'}}>
+              <div style={{width:2,height:24,background:'linear-gradient(to bottom,#38bdf8,rgba(56,189,248,.2))'}}/>
+              <OrgTree node={c} actions={actions}/>
+            </div>
+          ))}
+        </div>
+      </>}
+    </div>
+  );
+}
+
+/* ── OrgModal ── */
+function OrgModal({mode,node,onSave,onClose}){
+  const init=mode==='add'?{role:'',name:'',dept:'',level:'staff',email:'',phone:'',notes:''}:{role:node.role,name:node.name,dept:node.dept,level:node.level,email:node.email||'',phone:node.phone||'',notes:node.notes||''};
+  const [form,setForm]=useState(init);
+  const [photo,setPhoto]=useState(mode==='edit'?node.photo:null);
+  const pRef=useRef();
+  const set=(k,v)=>setForm(p=>({...p,[k]:v}));
+  const handleP=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>setPhoto(ev.target.result);r.readAsDataURL(f);};
+  return(
+    <Modal onClose={onClose} title={mode==='add'?'➕ إضافة موظف':'✏️ تعديل البيانات'}>
+      <div style={{display:'flex',flexDirection:'column',alignItems:'center',marginBottom:18}}>
+        <div className="pr-ring" style={{width:88,height:88,cursor:'pointer'}} onClick={()=>pRef.current?.click()}>
+          {photo?<img src={photo} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+          :<div style={{width:'100%',height:'100%',background:'rgba(56,189,248,.08)',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:4}}><span style={{fontSize:26}}>📷</span><span style={{fontSize:10,color:'#38bdf8'}}>رفع صورة</span></div>}
+        </div>
+        <input ref={pRef} type="file" accept="image/*" style={{display:'none'}} onChange={handleP} capture="user"/>
+        <span style={{color:'#475569',fontSize:11,marginTop:7}}>اضغط لتحميل الصورة من هاتفك أو جهازك</span>
+      </div>
+      {[['المسمى الوظيفي *','role','text'],['الاسم الكامل','name','text'],['القسم / الشعبة','dept','text'],['البريد الإلكتروني','email','email'],['رقم الجوال','phone','tel']].map(([lbl,k,type])=>(
+        <div key={k} style={{marginBottom:12}}>
+          <label className="lbl">{lbl}</label>
+          <input className="inp" type={type} value={form[k]} onChange={e=>set(k,e.target.value)} placeholder={lbl}/>
+        </div>
+      ))}
+      <div style={{marginBottom:12}}>
+        <label className="lbl">المستوى الوظيفي</label>
+        <select className="sel" value={form.level} onChange={e=>set('level',e.target.value)}>
+          {Object.entries(LVLMAP).map(([k,v])=><option key={k} value={k}>{v.label}</option>)}
+        </select>
+      </div>
+      <div style={{marginBottom:20}}>
+        <label className="lbl">ملاحظات</label>
+        <textarea className="inp" rows={2} value={form.notes} onChange={e=>set('notes',e.target.value)} placeholder="ملاحظات..." style={{resize:'vertical'}}/>
+      </div>
+      <div style={{display:'flex',gap:12}}>
+        <button className="gb" onClick={()=>{if(!form.role.trim())return;onSave({...form,photo,docs:mode==='edit'?(node.docs||[]):[],children:mode==='edit'?(node.children||[]):[]}); }} style={{flex:1,padding:13,fontSize:15}}>{mode==='add'?'إضافة':'حفظ التعديلات'}</button>
+        <button onClick={onClose} style={{flex:1,padding:13,borderRadius:10,border:'1px solid rgba(255,255,255,.1)',background:'transparent',color:'#94a3b8',cursor:'pointer',fontSize:15}}>إلغاء</button>
+      </div>
+    </Modal>
+  );
+}
+
+/* ── OrgPage ── */
+function OrgPage({org,setOrg,toast}){
+  const [modal,setModal]=useState(null);
+  const [search,setSearch]=useState('');
+  const actions={
+    onEdit:n=>setModal({t:'edit',node:n}),
+    onDelete:n=>setModal({t:'del',node:n}),
+    onAdd:n=>setModal({t:'add',pid:n.id}),
+    onPhoto:(id,photo)=>{setOrg(p=>updNode(p,id,{photo}));toast('تم تحديث الصورة ✓','success');},
+    onDoc:(id,docs)=>{const nd=findNode(org,id);setOrg(p=>updNode(p,id,{docs:[...(nd?.docs||[]),...docs]}));toast(`تم تحميل ${docs.length} مستند ✓`,'success');},
+  };
+  const all=flatTree(org);
+  return(
+    <div style={{padding:22,height:'100%',display:'flex',flexDirection:'column'}}>
+      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:14,flexWrap:'wrap',gap:12}}>
+        <div>
+          <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900}}>🏢 الهيكل التنظيمي</h1>
+          <p style={{color:'#64748b',fontSize:13}}>{all.length} وظيفة • {all.filter(n=>n.name).length} محددة • مرر على البطاقة لخيارات الإدارة</p>
+        </div>
+        <div style={{display:'flex',gap:10}}>
+          <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="🔍 بحث..." style={{background:'rgba(255,255,255,.04)',border:'1px solid rgba(56,189,248,.2)',borderRadius:10,padding:'8px 14px',color:'#e2e8f0',fontSize:13,width:180,fontFamily:'Tajawal,sans-serif'}}/>
+          <button className="gb" onClick={()=>setModal({t:'add',pid:org.id})} style={{padding:'9px 18px',fontSize:14}}>➕ إضافة</button>
+        </div>
+      </div>
+      {search&&<div style={{marginBottom:12,display:'flex',gap:8,flexWrap:'wrap'}}>
+        {all.filter(n=>n.name?.includes(search)||n.role?.includes(search)).map(n=>(
+          <div key={n.id} className="mc" style={{padding:'8px 14px',display:'flex',gap:8,alignItems:'center',flexShrink:0}}>
+            <span style={{fontSize:16}}>👤</span>
+            <div><div style={{color:'#38bdf8',fontWeight:700,fontSize:13}}>{n.role}</div><div style={{color:'#94a3b8',fontSize:11}}>{n.name||'شاغر'}</div></div>
+          </div>
+        ))}
+      </div>}
+      <div style={{flex:1,overflowX:'auto',overflowY:'auto'}}>
+        <div style={{minWidth:'max-content',paddingBottom:40,paddingTop:26,paddingLeft:20,paddingRight:20}}>
+          <OrgTree node={org} actions={actions} isRoot/>
+        </div>
+      </div>
+      {modal?.t==='add'&&<OrgModal mode="add" onSave={d=>{setOrg(p=>addChild(p,modal.pid,{id:uid(),...d}));toast('تمت الإضافة ✓','success');setModal(null);}} onClose={()=>setModal(null)}/>}
+      {modal?.t==='edit'&&<OrgModal mode="edit" node={modal.node} onSave={d=>{setOrg(p=>updNode(p,modal.node.id,d));toast('تم التحديث ✓','success');setModal(null);}} onClose={()=>setModal(null)}/>}
+      {modal?.t==='del'&&<Modal onClose={()=>setModal(null)} title="⚠️ تأكيد الحذف">
+        <p style={{color:'#94a3b8',fontSize:14,lineHeight:1.9,marginBottom:22}}>هل تريد حذف <strong style={{color:'#f87171'}}>"{modal.node.role}"</strong>؟ سيُحذف المرؤوسون أيضاً.</p>
+        <div style={{display:'flex',gap:12}}>
+          <button className="rb" onClick={()=>{setOrg(p=>delNode(p,modal.node.id));toast('تم الحذف','error');setModal(null);}} style={{flex:1,padding:13}}>تأكيد الحذف</button>
+          <button onClick={()=>setModal(null)} style={{flex:1,padding:13,borderRadius:10,border:'1px solid rgba(255,255,255,.1)',background:'transparent',color:'#94a3b8',cursor:'pointer'}}>إلغاء</button>
+        </div>
+      </Modal>}
+    </div>
+  );
+}
+
+/* ── Researchers ── */
+function ResearcherModal({researcher,onSave,onClose}){
+  const init=researcher||{name:'',title:'باحث',specialty:'',degree:'دكتوراه',university:'',email:'',phone:'',publications:0,projects:0,photo:null,docs:[],joinDate:'',status:'نشط',bio:''};
+  const [form,setForm]=useState({...init});
+  const pRef=useRef(),dRef=useRef();
+  const set=(k,v)=>setForm(p=>({...p,[k]:v}));
+  const handleP=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>set('photo',ev.target.result);r.readAsDataURL(f);};
+  const handleD=e=>{const fs=Array.from(e.target.files);if(!fs.length)return;set('docs',[...(form.docs||[]),...fs.map(f=>({name:f.name,size:fmtSize(f.size),date:nowStr()}))]);};
+  return(
+    <Modal onClose={onClose} title={researcher?'✏️ تعديل بيانات الباحث':'➕ إضافة باحث جديد'} maxW={560}>
+      <div style={{display:'flex',gap:18,marginBottom:18,flexWrap:'wrap'}}>
+        <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:10}}>
+          <div className="pr-ring" style={{width:88,height:88,cursor:'pointer'}} onClick={()=>pRef.current?.click()}>
+            {form.photo?<img src={form.photo} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+            :<div style={{width:'100%',height:'100%',background:'rgba(56,189,248,.07)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:32}}>🔬</div>}
+          </div>
+          <input ref={pRef} type="file" accept="image/*" style={{display:'none'}} onChange={handleP} capture="user"/>
+          <button onClick={()=>pRef.current?.click()} className="gb" style={{fontSize:11,padding:'5px 12px'}}>📷 صورة</button>
+          <button onClick={()=>dRef.current?.click()} style={{fontSize:11,padding:'5px 12px',borderRadius:8,border:'1px solid rgba(168,85,247,.4)',background:'rgba(168,85,247,.1)',color:'#d8b4fe',cursor:'pointer',fontFamily:'Tajawal,sans-serif'}}>📎 ملفات</button>
+          <input ref={dRef} type="file" multiple style={{display:'none'}} onChange={handleD}/>
+          {form.docs?.length>0&&<span style={{color:'#d8b4fe',fontSize:11}}>{form.docs.length} ملف محمّل</span>}
+        </div>
+        <div style={{flex:1,minWidth:200,display:'flex',flexDirection:'column',gap:10}}>
+          {[['الاسم الكامل *','name'],['المسمى الوظيفي','title'],['التخصص','specialty'],['الجامعة','university'],['البريد الإلكتروني','email'],['رقم الجوال','phone'],['سنة الانضمام','joinDate']].map(([lbl,k])=>(
+            <div key={k}>
+              <label className="lbl">{lbl}</label>
+              <input className="inp" value={form[k]||''} onChange={e=>set(k,e.target.value)} placeholder={lbl} style={{fontSize:13}}/>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:10,marginBottom:12}}>
+        {[['المؤهل','degree',['دكتوراه','ماجستير','بكالوريوس']],['الحالة','status',['نشط','إجازة','شاغر']]].map(([lbl,k,opts])=>(
+          <div key={k}><label className="lbl">{lbl}</label><select className="sel" value={form[k]} onChange={e=>set(k,e.target.value)}>{opts.map(o=><option key={o} value={o}>{o}</option>)}</select></div>
+        ))}
+        {[['أبحاث','publications'],['مشاريع','projects']].map(([lbl,k])=>(
+          <div key={k}><label className="lbl">{lbl}</label><input className="inp" type="number" value={form[k]} onChange={e=>set(k,+e.target.value)} min={0}/></div>
+        ))}
+      </div>
+      <div style={{marginBottom:18}}>
+        <label className="lbl">نبذة تعريفية</label>
+        <textarea className="inp" rows={2} value={form.bio||''} onChange={e=>set('bio',e.target.value)} placeholder="نبذة قصيرة..." style={{resize:'vertical'}}/>
+      </div>
+      <div style={{display:'flex',gap:12}}>
+        <button className="gb" onClick={()=>{if(!form.name.trim())return;onSave(form);}} style={{flex:1,padding:13,fontSize:15}}>{researcher?'حفظ التعديلات':'إضافة الباحث'}</button>
+        <button onClick={onClose} style={{flex:1,padding:13,borderRadius:10,border:'1px solid rgba(255,255,255,.1)',background:'transparent',color:'#94a3b8',cursor:'pointer'}}>إلغاء</button>
+      </div>
+    </Modal>
+  );
+}
+
+function ResearchersPage({toast}){
+  const [researchers,setResearchers]=useState(INIT_RESEARCHERS);
+  const [modal,setModal]=useState(null);
+  const save=form=>{
+    if(modal.t==='add')setResearchers(p=>[...p,{id:uid(),...form}]);
+    else setResearchers(p=>p.map(r=>r.id===modal.r?.id?{...r,...form}:r));
+    toast(modal.t==='add'?'تم إضافة الباحث ✓':'تم تحديث البيانات ✓','success');setModal(null);
+  };
+  const DC={'دكتوراه':'#38bdf8','ماجستير':'#a78bfa','بكالوريوس':'#34d399'};
+  const SC={'نشط':'#22c55e','إجازة':'#f59e0b','شاغر':'#64748b'};
+  return(
+    <div style={{padding:22,height:'100%',display:'flex',flexDirection:'column',gap:14}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
+        <div>
+          <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900}}>🔬 شعبة الباحثين</h1>
+          <p style={{color:'#64748b',fontSize:13}}>مركز المياه والبيئة والطاقة — الجامعة الأردنية</p>
+        </div>
+        <button className="gb" onClick={()=>setModal({t:'add'})} style={{padding:'9px 18px',fontSize:14}}>➕ إضافة باحث</button>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(130px,1fr))',gap:12}}>
+        {[['إجمالي الباحثين',researchers.length,'🔬','#38bdf8'],['باحثون نشطون',researchers.filter(r=>r.status==='نشط').length,'✅','#22c55e'],['أبحاث منشورة',researchers.reduce((a,r)=>a+(r.publications||0),0),'📄','#a78bfa'],['مشاريع نشطة',researchers.reduce((a,r)=>a+(r.projects||0),0),'🚀','#f59e0b']].map(([l,v,e,c])=>(
+          <div key={l} className="mc" style={{textAlign:'center',border:`1px solid ${c}25`}}>
+            <div style={{fontSize:24,marginBottom:5}}>{e}</div>
+            <div style={{color:c,fontSize:22,fontWeight:900}}>{v}</div>
+            <div style={{color:'#64748b',fontSize:12}}>{l}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{flex:1,overflowY:'auto',display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(270px,1fr))',gap:12,alignContent:'start'}}>
+        {researchers.map(r=>(
+          <div key={r.id} className="mc fiu" style={{position:'relative'}}>
+            <div style={{position:'absolute',top:12,left:12,display:'flex',gap:6}}>
+              <button onClick={()=>setModal({t:'edit',r})} style={{background:'rgba(56,189,248,.15)',border:'1px solid rgba(56,189,248,.3)',borderRadius:8,padding:'4px 9px',cursor:'pointer',color:'#38bdf8',fontSize:13}}>✏️</button>
+              <button onClick={()=>setResearchers(p=>p.filter(x=>x.id!==r.id))} style={{background:'rgba(239,68,68,.15)',border:'1px solid rgba(239,68,68,.3)',borderRadius:8,padding:'4px 9px',cursor:'pointer',color:'#f87171',fontSize:13}}>🗑️</button>
+            </div>
+            <div style={{display:'flex',gap:12,marginBottom:10}}>
+              <div className="pr-ring" style={{width:60,height:60}}>
+                {r.photo?<img src={r.photo} alt={r.name} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+                :<div style={{width:'100%',height:'100%',background:'rgba(56,189,248,.08)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:24}}>🔬</div>}
+              </div>
+              <div style={{flex:1}}>
+                <div style={{color:r.name?'#e2e8f0':'#475569',fontWeight:700,fontSize:14,marginBottom:3}}>{r.name||'شاغر'}</div>
+                <div style={{color:'#38bdf8',fontSize:12,marginBottom:5}}>{r.title}</div>
+                <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
+                  <span style={{background:`${DC[r.degree]||'#64748b'}20`,color:DC[r.degree]||'#64748b',borderRadius:20,padding:'2px 7px',fontSize:10,fontWeight:700,border:`1px solid ${DC[r.degree]||'#64748b'}40`}}>{r.degree}</span>
+                  <span style={{background:`${SC[r.status]||'#64748b'}20`,color:SC[r.status]||'#64748b',borderRadius:20,padding:'2px 7px',fontSize:10,fontWeight:700,border:`1px solid ${SC[r.status]||'#64748b'}40`}}>{r.status}</span>
+                </div>
+              </div>
+            </div>
+            {r.specialty&&<div style={{color:'#94a3b8',fontSize:12,marginBottom:6}}>🎓 {r.specialty}</div>}
+            {r.bio&&<div style={{color:'#64748b',fontSize:12,lineHeight:1.6,marginBottom:10}}>{r.bio}</div>}
+            <div style={{display:'flex',gap:10}}>
+              {[['📄',r.publications,'بحث','#38bdf8'],['🚀',r.projects,'مشروع','#a78bfa']].map(([e,v,l,c])=>(
+                <div key={l} style={{textAlign:'center',flex:1,background:`${c}08`,borderRadius:10,padding:'7px'}}>
+                  <div style={{fontSize:14}}>{e}</div>
+                  <div style={{color:c,fontWeight:900,fontSize:16}}>{v}</div>
+                  <div style={{color:'#475569',fontSize:10}}>{l}</div>
+                </div>
+              ))}
+            </div>
+            {r.email&&<div style={{marginTop:9,color:'#475569',fontSize:11}}>📧 {r.email}</div>}
+          </div>
+        ))}
+        <div className="mc" style={{textAlign:'center',cursor:'pointer',border:'2px dashed rgba(56,189,248,.2)',background:'rgba(56,189,248,.03)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',minHeight:160,gap:10}} onClick={()=>setModal({t:'add'})}>
+          <div style={{fontSize:36,opacity:.4}}>➕</div>
+          <div style={{color:'#475569',fontSize:13}}>إضافة باحث جديد</div>
+        </div>
+      </div>
+      {(modal?.t==='add'||modal?.t==='edit')&&<ResearcherModal researcher={modal.r} onSave={save} onClose={()=>setModal(null)}/>}
+    </div>
+  );
+}
+
+/* ── Vision ── */
+function VisionPage({toast,centerLogo}){
+  const [editing,setEditing]=useState(null);
+  const [content,setContent]=useState({
+    vision:'أن يكون مركز المياه والبيئة والطاقة مرجعاً بحثياً رائداً على المستوى الأردني والعربي، يُسهم في تطوير الحلول المستدامة للتحديات البيئية والمائية والطاقوية، ويُعزز مكانة الجامعة الأردنية بوصفها حاضنةً للإبداع العلمي والتكنولوجي.',
+    mission:'نُعنى بإجراء أبحاث علمية رصينة ومتكاملة في مجالات المياه والبيئة والطاقة المتجددة، وتقديم الاستشارات والخدمات التقنية المتخصصة، وتأهيل الكوادر البشرية، وبناء شراكات فاعلة مع المؤسسات الأكاديمية والصناعية على المستويين المحلي والدولي، بما يخدم التنمية المستدامة وتحقيق رؤية الأردن 2025.',
+    values:['التميز العلمي والأكاديمي','الاستدامة البيئية','الشفافية والنزاهة','الشراكة والتعاون','الابتكار والتجديد','خدمة المجتمع'],
+    goals:['إجراء أبحاث علمية رصينة في مجالات المياه والبيئة والطاقة','توفير حلول تقنية مستدامة لمشكلة شُح المياه','تطوير تقنيات الطاقة المتجددة وترشيد استهلاكها','تقديم برامج تدريبية وتأهيلية للكوادر الوطنية','بناء شراكات محلية وإقليمية ودولية فاعلة','نشر الوعي البيئي في المجتمع الأردني'],
+    strategic:['ريادة البحث التطبيقي في مجال المياه بحلول 2026','الحصول على الاعتماد المؤسسي الدولي في مجال الجودة','إنشاء شبكة إقليمية للباحثين في البيئة والطاقة','تطوير منصة رقمية متكاملة لإدارة البيانات البيئية','إطلاق برنامج منح بحثية للطلاب الموهوبين'],
+  });
+  const Section=({title,icon,field,isArr})=>(
+    <div className="gc" style={{padding:20,marginBottom:14}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}>
+        <h3 style={{color:'#38bdf8',fontWeight:900,fontSize:15,display:'flex',alignItems:'center',gap:8}}><span style={{fontSize:20}}>{icon}</span>{title}</h3>
+        <button onClick={()=>setEditing(field)} style={{background:'rgba(56,189,248,.1)',border:'1px solid rgba(56,189,248,.25)',borderRadius:8,padding:'4px 11px',cursor:'pointer',color:'#38bdf8',fontSize:12,fontFamily:'Tajawal,sans-serif'}}>✏️ تعديل</button>
+      </div>
+      {isArr?<div style={{display:'flex',flexDirection:'column',gap:7}}>
+        {content[field].map((item,i)=>(
+          <div key={i} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'9px 12px',background:'rgba(56,189,248,.04)',borderRadius:10,border:'1px solid rgba(56,189,248,.1)'}}>
+            <span style={{color:'#38bdf8',fontWeight:900,fontSize:13,flexShrink:0}}>{i+1}.</span>
+            <span style={{color:'#e2e8f0',fontSize:13,lineHeight:1.7}}>{item}</span>
+          </div>
+        ))}
+      </div>:<p style={{color:'#e2e8f0',fontSize:13.5,lineHeight:2,borderRight:'3px solid #0e7490',paddingRight:14}}>{content[field]}</p>}
+    </div>
+  );
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <div style={{textAlign:'center',marginBottom:26,padding:'26px 20px',background:'linear-gradient(135deg,rgba(14,116,144,.12),rgba(56,189,248,.06))',borderRadius:18,border:'1px solid rgba(56,189,248,.14)',position:'relative',overflow:'hidden'}}>
+        <div style={{position:'absolute',top:-20,right:-20,fontSize:110,opacity:.04}}>💧</div>
+        {centerLogo?<img src={centerLogo} alt="شعار" style={{height:68,marginBottom:12,objectFit:'contain'}}/>
+        :<div style={{width:68,height:68,borderRadius:'50%',background:'linear-gradient(135deg,#0e7490,#38bdf8)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:30,margin:'0 auto 12px'}}>💧</div>}
+        <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900,marginBottom:5}}>مركز المياه والبيئة والطاقة</h1>
+        <p style={{color:'#64748b',fontSize:13}}>الجامعة الأردنية — عمّان، الأردن</p>
+        <div style={{display:'flex',gap:12,justifyContent:'center',marginTop:14,flexWrap:'wrap'}}>
+          {['💧 المياه','🌿 البيئة','⚡ الطاقة','🔬 البحث العلمي'].map(t=>(
+            <span key={t} style={{background:'rgba(56,189,248,.1)',border:'1px solid rgba(56,189,248,.2)',borderRadius:20,padding:'5px 14px',color:'#38bdf8',fontWeight:700,fontSize:12}}>{t}</span>
+          ))}
+        </div>
+      </div>
+      <Section title="الرؤية" icon="🌟" field="vision"/>
+      <Section title="الرسالة" icon="🎯" field="mission"/>
+      <Section title="القيم الأساسية" icon="💎" field="values" isArr/>
+      <Section title="الأهداف التشغيلية" icon="📌" field="goals" isArr/>
+      <Section title="الأهداف الاستراتيجية" icon="🚀" field="strategic" isArr/>
+      {editing&&(
+        <Modal onClose={()=>setEditing(null)} title="✏️ تعديل المحتوى" maxW={580}>
+          {Array.isArray(content[editing])?(
+            <>
+              <div style={{display:'flex',flexDirection:'column',gap:8,marginBottom:14}}>
+                {content[editing].map((item,i)=>(
+                  <div key={i} style={{display:'flex',gap:8}}>
+                    <input className="inp" value={item} onChange={e=>{const arr=[...content[editing]];arr[i]=e.target.value;setContent(p=>({...p,[editing]:arr}));}} style={{flex:1}}/>
+                    <button onClick={()=>setContent(p=>({...p,[editing]:content[editing].filter((_,j)=>j!==i)}))} style={{background:'rgba(239,68,68,.15)',border:'1px solid rgba(239,68,68,.3)',borderRadius:8,padding:'6px 10px',cursor:'pointer',color:'#f87171',fontFamily:'Tajawal,sans-serif'}}>🗑️</button>
+                  </div>
+                ))}
+              </div>
+              <button className="gb" onClick={()=>setContent(p=>({...p,[editing]:[...content[editing],'']})) } style={{width:'100%',padding:10,marginBottom:14,fontSize:13}}>➕ إضافة</button>
+            </>
+          ):(
+            <textarea className="inp" rows={5} value={content[editing]} onChange={e=>setContent(p=>({...p,[editing]:e.target.value}))} style={{resize:'vertical',marginBottom:14}}/>
+          )}
+          <div style={{display:'flex',gap:12}}>
+            <button className="gb" onClick={()=>{toast('تم الحفظ ✓','success');setEditing(null);}} style={{flex:1,padding:13}}>حفظ</button>
+            <button onClick={()=>setEditing(null)} style={{flex:1,padding:13,borderRadius:10,border:'1px solid rgba(255,255,255,.1)',background:'transparent',color:'#94a3b8',cursor:'pointer'}}>إلغاء</button>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+}
+
+/* ── Social ── */
+function SocialPage({toast}){
+  const [links,setLinks]=useState(INIT_SOCIAL);
+  const [editing,setEditing]=useState(null);
+  const [showAdd,setShowAdd]=useState(false);
+  const [newLink,setNewLink]=useState({platform:'',url:'',icon:'🌐',color:'#38bdf8'});
+  const PLATS=[['واتساب','📱','#25d366'],['فيسبوك','📘','#1877f2'],['تويتر / X','🐦','#1da1f2'],['لينكد إن','💼','#0077b5'],['يوتيوب','▶️','#ff0000'],['إنستغرام','📷','#e1306c'],['تيليغرام','✈️','#0088cc'],['تيك توك','🎵','#ee1d52'],['البريد الإلكتروني','📧','#38bdf8'],['الموقع الإلكتروني','🌐','#64748b']];
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:20,flexWrap:'wrap',gap:12}}>
+        <div><h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900}}>📲 مواقع التواصل الاجتماعي</h1><p style={{color:'#64748b',fontSize:13}}>إدارة روابط التواصل وتفعيلها</p></div>
+        <button className="gb" onClick={()=>setShowAdd(true)} style={{padding:'9px 18px',fontSize:14}}>➕ إضافة منصة</button>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(285px,1fr))',gap:12,marginBottom:22}}>
+        {links.map(link=>(
+          <div key={link.id} className="mc fiu" style={{border:`1px solid ${link.active?link.color+'40':'rgba(26,122,138,.15)'}`,opacity:link.active?1:.6}}>
+            <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:12}}>
+              <div style={{width:48,height:48,borderRadius:14,background:`${link.color}18`,border:`2px solid ${link.color}40`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,flexShrink:0}}>{link.icon}</div>
+              <div style={{flex:1}}>
+                <div style={{color:'#e2e8f0',fontWeight:700,fontSize:14}}>{link.platform}</div>
+                <a href={link.url} target="_blank" rel="noreferrer" style={{color:link.color,fontSize:11,textDecoration:'none',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',display:'block',maxWidth:190}}>{link.url}</a>
+              </div>
+            </div>
+            <div style={{display:'flex',gap:8,alignItems:'center'}}>
+              <div onClick={()=>setLinks(p=>p.map(l=>l.id===link.id?{...l,active:!l.active}:l))} style={{width:44,height:24,borderRadius:12,background:link.active?link.color:'#1e3a5f',cursor:'pointer',position:'relative',transition:'all .3s',flexShrink:0}}>
+                <div style={{width:18,height:18,borderRadius:'50%',background:'#fff',position:'absolute',top:3,right:link.active?3:'auto',left:link.active?'auto':3,transition:'all .3s'}}/>
+              </div>
+              <span style={{color:link.active?'#22c55e':'#475569',fontSize:12,fontWeight:600,flex:1}}>{link.active?'مُفعَّل':'معطَّل'}</span>
+              <button onClick={()=>setEditing({...link})} style={{background:'rgba(56,189,248,.1)',border:'1px solid rgba(56,189,248,.2)',borderRadius:8,padding:'4px 9px',cursor:'pointer',color:'#38bdf8',fontSize:13,fontFamily:'Tajawal,sans-serif'}}>✏️</button>
+              <button onClick={()=>{setLinks(p=>p.filter(l=>l.id!==link.id));toast('تم الحذف','error');}} style={{background:'rgba(239,68,68,.1)',border:'1px solid rgba(239,68,68,.2)',borderRadius:8,padding:'4px 9px',cursor:'pointer',color:'#f87171',fontSize:13,fontFamily:'Tajawal,sans-serif'}}>🗑️</button>
+              <a href={link.url} target="_blank" rel="noreferrer" style={{background:`${link.color}18`,border:`1px solid ${link.color}40`,borderRadius:8,padding:'4px 9px',cursor:'pointer',color:link.color,fontSize:13,textDecoration:'none'}}>🔗</a>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="gc" style={{padding:18}}>
+        <h3 style={{color:'#38bdf8',fontWeight:800,fontSize:14,marginBottom:12}}>📊 إحصائيات</h3>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:10}}>
+          {[['إجمالي المنصات',links.length,'📱'],['منصات نشطة',links.filter(l=>l.active).length,'✅'],['منصات معطلة',links.filter(l=>!l.active).length,'⭕']].map(([l,v,e])=>(
+            <div key={l} style={{textAlign:'center',background:'rgba(56,189,248,.05)',borderRadius:12,padding:12}}>
+              <div style={{fontSize:20}}>{e}</div><div style={{color:'#38bdf8',fontSize:20,fontWeight:900}}>{v}</div><div style={{color:'#64748b',fontSize:11}}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {showAdd&&(
+        <Modal onClose={()=>setShowAdd(false)} title="➕ إضافة منصة">
+          <div style={{marginBottom:12}}>
+            <label className="lbl">المنصة</label>
+            <select className="sel" value={newLink.platform} onChange={e=>{const p=e.target.value;const found=PLATS.find(([n])=>n===p);setNewLink(x=>({...x,platform:p,icon:found?found[1]:'🌐',color:found?found[2]:'#38bdf8'}));}}>
+              <option value="">اختر منصة...</option>
+              {PLATS.map(([n,e])=><option key={n} value={n}>{e} {n}</option>)}
+            </select>
+          </div>
+          <div style={{marginBottom:14}}>
+            <label className="lbl">الرابط (URL)</label>
+            <input className="inp" value={newLink.url} onChange={e=>setNewLink(x=>({...x,url:e.target.value}))} placeholder="https://..."/>
+          </div>
+          <div style={{display:'flex',gap:12}}>
+            <button className="gb" onClick={()=>{if(!newLink.platform||!newLink.url)return toast('جميع الحقول مطلوبة','warning');setLinks(p=>[...p,{id:uid(),...newLink,active:true}]);setNewLink({platform:'',url:'',icon:'🌐',color:'#38bdf8'});setShowAdd(false);toast('تمت الإضافة ✓','success');}} style={{flex:1,padding:13}}>إضافة</button>
+            <button onClick={()=>setShowAdd(false)} style={{flex:1,padding:13,borderRadius:10,border:'1px solid rgba(255,255,255,.1)',background:'transparent',color:'#94a3b8',cursor:'pointer'}}>إلغاء</button>
+          </div>
+        </Modal>
+      )}
+      {editing&&(
+        <Modal onClose={()=>setEditing(null)} title="✏️ تعديل الرابط">
+          {[['اسم المنصة','platform','text'],['الرابط','url','url']].map(([lbl,k,type])=>(
+            <div key={k} style={{marginBottom:12}}>
+              <label className="lbl">{lbl}</label>
+              <input className="inp" type={type} value={editing[k]} onChange={e=>setEditing(x=>({...x,[k]:e.target.value}))}/>
+            </div>
+          ))}
+          <div style={{display:'flex',gap:12}}>
+            <button className="gb" onClick={()=>{setLinks(p=>p.map(l=>l.id===editing.id?editing:l));toast('تم التحديث ✓','success');setEditing(null);}} style={{flex:1,padding:13}}>حفظ</button>
+            <button onClick={()=>setEditing(null)} style={{flex:1,padding:13,borderRadius:10,border:'1px solid rgba(255,255,255,.1)',background:'transparent',color:'#94a3b8',cursor:'pointer'}}>إلغاء</button>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+}
+
+/* ── Chatbot ── */
+const BOT_REPLIES={
+  'خدمات':'يقدم المركز خدمات متعددة تشمل: الأبحاث التطبيقية في مجال المياه والبيئة والطاقة، الاستشارات التقنية المتخصصة، تحليل عينات المياه والتربة في مختبراتنا المتطورة، وتنفيذ برامج تدريبية للكوادر الوطنية. 💧',
+  'مدير':'مدير المركز هو الأستاذ الدكتور خلدون شطناوي، ويمكن التواصل معه عبر البريد الإلكتروني الرسمي للمركز. 👨‍💼',
+  'باحث':'رئيس شعبة الباحثين هو الدكتور خالد رباع، المتخصص في هندسة البيئة ومعالجة المياه. للتواصل مع الباحثين يرجى مراسلة المركز عبر البريد الرسمي. 🔬',
+  'ساعات':'ساعات العمل الرسمية: من الأحد إلى الخميس، من 8:00 صباحاً حتى 4:00 مساءً. 🕐',
+  'مختبر':'يتوفر في المركز مختبر متطور لتحليل عينات المياه والتربة والهواء. للاستفسار عن حجز مواعيد المختبر يرجى التواصل مع مشرف المختبر مباشرةً. 🧪',
+  'شكوى':'يمكنك تقديم شكواك من خلال صفحة "صندوق الشكاوي" في هذا النظام. سيتم مراجعة شكواك والرد عليها خلال 48 ساعة عمل. 📨',
+  'أبحاث':'ينفذ المركز أبحاثاً متعددة في مجالات: معالجة المياه، الطاقة الشمسية وطاقة الرياح، رصد جودة الهواء، وإدارة النفايات الصلبة. يمكن الاطلاع على قائمة الأبحاث المنشورة في الموقع الرسمي للجامعة الأردنية. 📚',
+  'تدريب':'يقدم المركز برامج تدريبية متخصصة للطلاب والمهنيين في مجالات المياه والبيئة والطاقة. للاستفسار عن البرامج المتاحة يرجى التواصل مع إدارة المركز. 🎓',
+  'default':'شكراً لتواصلك مع المساعد الذكي لمركز المياه والبيئة والطاقة! للحصول على إجابة دقيقة، يُرجى التواصل المباشر مع إدارة المركز عبر البريد الإلكتروني الرسمي أو زيارة مقر المركز في الجامعة الأردنية. 💧🌿⚡'
+};
+const getBotReply=q=>{const lq=q;for(const[k,v]of Object.entries(BOT_REPLIES)){if(k!=='default'&&lq.includes(k))return v;}return BOT_REPLIES.default;};
+
+function ChatbotPage({toast}){
+  const [msgs,setMsgs]=useState([{id:1,role:'bot',text:'مرحباً! أنا واتر بوت، المساعد الذكي لمركز المياه والبيئة والطاقة في الجامعة الأردنية. كيف يمكنني مساعدتك اليوم؟ 💧🌿⚡'}]);
+  const [input,setInput]=useState('');
+  const [loading,setLoading]=useState(false);
+  const endRef=useRef();
+  const SUGGESTED=['ما هي خدمات المركز؟','من هو مدير المركز؟','ما ساعات العمل؟','كيف أتواصل مع الباحثين؟','ما هي أبحاث المركز؟','كيف أقدم شكوى؟'];
+  useEffect(()=>{endRef.current?.scrollIntoView({behavior:'smooth'});},[msgs]);
+  const send=async(text=input)=>{
+    const q=(text||'').trim();
+    if(!q||loading)return;
+    setInput('');
+    const uMsg={id:Date.now(),role:'user',text:q};
+    setMsgs(p=>[...p,uMsg]);
+    aiInsert(q,true);
+    setLoading(true);
+    try{
+      const hist=msgs.slice(-6).map(m=>({role:m.role==='user'?'user':'assistant',content:m.text}));
+      const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:900,system:'أنت المساعد الذكي الرسمي لمركز المياه والبيئة والطاقة في الجامعة الأردنية. اسمك واتر بوت. مدير المركز: أ.د. خلدون شطناوي. رئيس شعبة الباحثين: د. خالد رباع. أجب باللغة العربية بأسلوب ودي ومهني ومختصر.',messages:[...hist,{role:'user',content:q}]})});
+      const d=await res.json();
+      const reply=d.content?.find(b=>b.type==='text')?.text||'عذراً، لم أتمكن من الرد الآن.';
+      setMsgs(p=>[...p,{id:Date.now()+1,role:'bot',text:reply}]);
+      aiInsert(reply,false);
+    }catch{
+      const fallback=getBotReply(q);
+      setMsgs(p=>[...p,{id:Date.now()+1,role:'bot',text:fallback}]);
+      aiInsert(fallback,false);
+    }
+    setLoading(false);
+  };
+  return(
+    <div style={{padding:'16px 22px',height:'100%',display:'flex',flexDirection:'column',gap:12}}>
+      <div style={{display:'flex',alignItems:'center',gap:12}}>
+        <div style={{width:48,height:48,borderRadius:14,background:'linear-gradient(135deg,#0e7490,#38bdf8)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,flexShrink:0}}>🤖</div>
+        <div>
+          <h1 style={{color:'#38bdf8',fontSize:18,fontWeight:900}}>واتر بوت — المساعد الذكي</h1>
+          <p style={{color:'#22c55e',fontSize:12}}>● متصل الآن • مركز المياه والبيئة والطاقة</p>
+        </div>
+      </div>
+      <div style={{display:'flex',gap:7,flexWrap:'wrap'}}>
+        {SUGGESTED.map(s=>(
+          <button key={s} onClick={()=>send(s)} style={{background:'rgba(56,189,248,.08)',border:'1px solid rgba(56,189,248,.2)',borderRadius:20,padding:'5px 11px',cursor:'pointer',color:'#38bdf8',fontSize:11.5,transition:'all .2s',fontFamily:'Tajawal,sans-serif'}}>{s}</button>
+        ))}
+      </div>
+      <div style={{flex:1,overflowY:'auto',display:'flex',flexDirection:'column',gap:11,padding:'4px 0'}}>
+        {msgs.map(m=>(
+          <div key={m.id} className="fiu" style={{display:'flex',alignItems:'flex-end',gap:9,flexDirection:m.role==='user'?'row-reverse':'row'}}>
+            <div style={{width:30,height:30,borderRadius:'50%',background:m.role==='user'?'linear-gradient(135deg,#0e7490,#38bdf8)':'linear-gradient(135deg,#1e3a5f,#0d2a40)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:14,flexShrink:0}}>
+              {m.role==='user'?'👤':'🤖'}
+            </div>
+            <div className={m.role==='user'?'cbu':'cbb'}>{m.text}</div>
+          </div>
+        ))}
+        {loading&&<div style={{display:'flex',gap:9,alignItems:'flex-end'}}>
+          <div style={{width:30,height:30,borderRadius:'50%',background:'linear-gradient(135deg,#1e3a5f,#0d2a40)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:14}}>🤖</div>
+          <div className="cbb" style={{display:'flex',gap:5,alignItems:'center',padding:'13px 16px'}}>
+            {[0,1,2].map(i=><div key={i} style={{width:7,height:7,borderRadius:'50%',background:'#38bdf8',animation:`wv 1s ease-in-out ${i*0.2}s infinite`}}/>)}
+          </div>
+        </div>}
+        <div ref={endRef}/>
+      </div>
+      <div style={{display:'flex',gap:9}}>
+        <input className="inp" value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==='Enter'&&send()} placeholder="اكتب سؤالك هنا..." style={{flex:1}}/>
+        <button className="gb" onClick={()=>send()} disabled={loading||!input.trim()} style={{padding:'10px 18px',flexShrink:0,opacity:loading||!input.trim()?.5:1}}>إرسال ↑</button>
+        <button onClick={()=>{setMsgs([{id:Date.now(),role:'bot',text:'تم بدء محادثة جديدة. كيف يمكنني مساعدتك؟ 💧'}]);toast('محادثة جديدة ✓','info');}} style={{background:'rgba(255,255,255,.05)',border:'1px solid rgba(255,255,255,.1)',borderRadius:10,padding:'10px 13px',cursor:'pointer',color:'#64748b',flexShrink:0,fontFamily:'Tajawal,sans-serif'}} title="محادثة جديدة">🔄</button>
+      </div>
+    </div>
+  );
+}
+
+/* ── Conduct ── */
+function ConductPage(){
+  const [openIdx,setOpenIdx]=useState(null);
+  const secs=[
+    {t:'أولاً: الالتزام بقيم الجامعة الأردنية',e:'🏛️',items:['الحفاظ على سمعة الجامعة الأردنية وتعزيز مكانتها الأكاديمية والبحثية','الالتزام بمبادئ النزاهة والشفافية في جميع الأعمال والتعاملات الرسمية','احترام التسلسل الإداري واتباع اللوائح والأنظمة المعتمدة في الجامعة','المحافظة على المعلومات والبيانات السرية وعدم الإفصاح عنها دون إذن مسبق','تجنب تعارض المصالح والإفصاح الفوري عند وجود أي تعارض محتمل']},
+    {t:'ثانياً: الاحترافية والسلوك المهني',e:'💼',items:['الالتزام بمواعيد العمل الرسمية وإشعار الجهة المختصة عند التأخر أو الغياب','ارتداء الملابس اللائقة التي تتناسب مع الطابع الأكاديمي والمهني للمركز','التعامل مع الزملاء والمراجعين باحترام ومهنية عالية دون تمييز','الحفاظ على بيئة عمل إيجابية خالية من أي شكل من أشكال التحرش أو الإساءة','الحرص على التطوير المهني المستمر والمشاركة في برامج التدريب']},
+    {t:'ثالثاً: استخدام الموارد والتقنية',e:'💻',items:['استخدام الموارد والتقنيات المتاحة للأغراض الرسمية فقط','الالتزام بسياسة أمن المعلومات وحماية البيانات وفق أنظمة الجامعة','عدم استخدام أجهزة المركز لتصفح مواقع غير لائقة أو غير مشروعة','حماية كلمات المرور وعدم مشاركتها مع أي طرف مهما كانت الأسباب','الإبلاغ الفوري عن أي خرق أمني أو استخدام غير مشروع للأنظمة']},
+    {t:'رابعاً: البحث العلمي والنشر',e:'🔬',items:['الالتزام بمعايير الأمانة العلمية وتجنب الانتحال الأدبي بكل أشكاله','توثيق المصادر والمراجع بدقة وفق المعايير الأكاديمية المعتمدة','الحصول على الموافقات اللازمة قبل نشر أي أبحاث تمثل المركز','احترام حقوق الملكية الفكرية للآخرين والحفاظ على حقوق المركز','الإفصاح عن مصادر التمويل وأي تعارض محتمل في مصالح البحث']},
+    {t:'خامساً: التعامل مع المجتمع والشركاء',e:'🤝',items:['تمثيل المركز بصورة إيجابية في كافة اللقاءات والفعاليات الخارجية','بناء علاقات احترافية مع الشركاء والمؤسسات وفق المصالح المشتركة','الالتزام بالمواعيد والتعهدات المقطوعة للجهات الخارجية','عدم قبول الهدايا أو المزايا التي قد تؤثر على مبدأ الحياد والنزاهة','التعامل مع وسائل الإعلام وفق السياسة الإعلامية المعتمدة في الجامعة']},
+    {t:'سادساً: الجزاءات والإجراءات التأديبية',e:'⚖️',items:['يُحال كل مخالفة لأحكام هذه المدونة إلى لجنة التحقيق المختصة','تتدرج الجزاءات من التنبيه الكتابي إلى الإنهاء الفوري وفق جسامة المخالفة','يحق للموظف التظلم من أي قرار تأديبي وفق اللوائح المعتمدة','تُسجل المخالفات في ملف الموظف وتؤخذ بعين الاعتبار عند التقييم السنوي','تضمن الجامعة سرية إجراءات التحقيق وحماية حقوق جميع الأطراف']},
+  ];
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <div style={{textAlign:'center',marginBottom:24,padding:'20px',background:'linear-gradient(135deg,rgba(14,116,144,.1),rgba(56,189,248,.05))',borderRadius:16,border:'1px solid rgba(56,189,248,.14)'}}>
+        <div style={{fontSize:44,marginBottom:8}}>📜</div>
+        <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900,marginBottom:5}}>مدونة السلوك الوظيفي</h1>
+        <p style={{color:'#64748b',fontSize:13}}>مركز المياه والبيئة والطاقة — الجامعة الأردنية</p>
+        <p style={{color:'#94a3b8',fontSize:12,marginTop:8,lineHeight:1.8}}>يُلزم جميع منتسبي المركز بالالتزام بهذه المدونة وفق السياسات الأكاديمية المعتمدة</p>
+      </div>
+      <div style={{display:'flex',flexDirection:'column',gap:10}}>
+        {secs.map((sec,i)=>(
+          <div key={i} className="gc" style={{overflow:'hidden',border:'1px solid rgba(56,189,248,.13)'}}>
+            <div onClick={()=>setOpenIdx(openIdx===i?null:i)} style={{padding:'15px 18px',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+              <div style={{display:'flex',alignItems:'center',gap:10}}>
+                <span style={{fontSize:20}}>{sec.e}</span>
+                <span style={{color:'#e2e8f0',fontWeight:700,fontSize:14}}>{sec.t}</span>
+              </div>
+              <span style={{color:'#38bdf8',fontSize:16,transition:'transform .3s',transform:openIdx===i?'rotate(180deg)':'none'}}>▾</span>
+            </div>
+            {openIdx===i&&<div className="fiu" style={{padding:'0 18px 16px'}}>
+              <div style={{height:1,background:'rgba(56,189,248,.1)',marginBottom:12}}/>
+              {sec.items.map((item,j)=>(
+                <div key={j} style={{display:'flex',gap:10,marginBottom:9,alignItems:'flex-start'}}>
+                  <span style={{color:'#0e7490',fontWeight:900,fontSize:13,flexShrink:0,marginTop:2}}>◆</span>
+                  <span style={{color:'#94a3b8',fontSize:13,lineHeight:1.8}}>{item}</span>
+                </div>
+              ))}
+            </div>}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Files ── */
+function FilesPage({toast}){
+  const [files,setFiles]=useState(INIT_FILES);
+  const [folder,setFolder]=useState('الكل');
+  const [search,setSearch]=useState('');
+  const [view,setView]=useState('grid');
+  const [selected,setSelected]=useState([]);
+  const [preview,setPreview]=useState(null);
+  const uploadRef=useRef();
+  const handleUpload=e=>{
+    const fs=Array.from(e.target.files);
+    if(!fs.length)return;
+    const newFs=fs.map(f=>({id:uid(),name:f.name,size:f.size,folder:folder==='الكل'?'وثائق إدارية':folder,date:nowStr(),preview:f.type.startsWith('image/')?URL.createObjectURL(f):null}));
+    setFiles(p=>[...newFs,...p]);
+    toast(`تم رفع ${fs.length} ملف ✓`,'success');
+    e.target.value='';
+  };
+  const toggleSel=id=>setSelected(p=>p.includes(id)?p.filter(x=>x!==id):[...p,id]);
+  const delSelected=()=>{setFiles(p=>p.filter(f=>!selected.includes(f.id)));toast(`تم حذف ${selected.length} ملف`,'error');setSelected([]);};
+  const filtered=files.filter(f=>(folder==='الكل'||f.folder===folder)&&(f.name.toLowerCase().includes(search.toLowerCase())||!search));
+  return(
+    <div style={{padding:22,height:'100%',display:'flex',flexDirection:'column',gap:12}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
+        <div><h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900}}>📁 إدارة الملفات</h1><p style={{color:'#64748b',fontSize:13}}>{files.length} ملف • {fmtSize(files.reduce((a,f)=>a+f.size,0))} إجمالي</p></div>
+        <div style={{display:'flex',gap:9,flexWrap:'wrap'}}>
+          {selected.length>0&&<button className="rb" onClick={delSelected} style={{padding:'8px 14px',fontSize:13}}>🗑️ حذف ({selected.length})</button>}
+          <button className="eb" onClick={()=>{const d=JSON.stringify(files.map(f=>({name:f.name,size:fmtSize(f.size),folder:f.folder,date:f.date})),null,2);const b=new Blob([d],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='files-list.json';a.click();toast('تم التصدير ✓','success');}} style={{padding:'8px 14px',fontSize:13}}>⬇️ تصدير</button>
+          <button className="gb" onClick={()=>uploadRef.current?.click()} style={{padding:'8px 14px',fontSize:13}}>⬆️ رفع ملفات</button>
+          <input ref={uploadRef} type="file" multiple style={{display:'none'}} onChange={handleUpload}/>
+        </div>
+      </div>
+      <div style={{display:'flex',gap:9,flexWrap:'wrap',alignItems:'center'}}>
+        <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="🔍 بحث في الملفات..." style={{background:'rgba(255,255,255,.04)',border:'1px solid rgba(56,189,248,.2)',borderRadius:10,padding:'8px 14px',color:'#e2e8f0',fontSize:13,flex:1,minWidth:160,fontFamily:'Tajawal,sans-serif'}}/>
+        <select className="sel" style={{width:'auto',padding:'8px 12px',fontSize:13}} value={folder} onChange={e=>setFolder(e.target.value)}>
+          {FOLDERS.map(f=><option key={f} value={f}>{f}</option>)}
+        </select>
+        <div style={{display:'flex',gap:4}}>
+          {[['⊞','grid'],['☰','list']].map(([e,v])=>(
+            <button key={v} onClick={()=>setView(v)} style={{background:view===v?'rgba(56,189,248,.2)':'rgba(255,255,255,.04)',border:`1px solid ${view===v?'rgba(56,189,248,.4)':'rgba(255,255,255,.1)'}`,borderRadius:8,padding:'7px 11px',cursor:'pointer',color:view===v?'#38bdf8':'#64748b',fontSize:16,fontFamily:'Tajawal,sans-serif'}}>{e}</button>
+          ))}
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:'auto'}}>
+        {filtered.length===0&&<div style={{textAlign:'center',color:'#475569',marginTop:60}}>📭<div style={{fontSize:14,marginTop:12}}>لا توجد ملفات</div></div>}
+        {view==='grid'?(
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(135px,1fr))',gap:11}}>
+            {filtered.map(f=>{
+              const isSel=selected.includes(f.id);
+              return(
+                <div key={f.id} className="fc" style={{border:`2px solid ${isSel?'#38bdf8':'rgba(26,122,138,.15)'}`,background:isSel?'rgba(56,189,248,.1)':undefined,position:'relative'}}>
+                  <input type="checkbox" checked={isSel} onChange={()=>toggleSel(f.id)} style={{position:'absolute',top:7,right:7,accentColor:'#38bdf8'}}/>
+                  {f.preview?<img src={f.preview} alt={f.name} style={{width:58,height:58,objectFit:'cover',borderRadius:8}}/>
+                  :<div style={{fontSize:38}}>{getFI(f.name)}</div>}
+                  <div style={{color:'#e2e8f0',fontSize:11,fontWeight:600,wordBreak:'break-all',lineHeight:1.4}}>{f.name}</div>
+                  <div style={{color:'#475569',fontSize:10}}>{fmtSize(f.size)}</div>
+                  <div style={{display:'flex',gap:5}}>
+                    <button onClick={()=>setPreview(f)} style={{background:'rgba(168,85,247,.1)',border:'none',borderRadius:6,padding:'3px 7px',cursor:'pointer',color:'#d8b4fe',fontSize:11,fontFamily:'Tajawal,sans-serif'}}>👁️</button>
+                    <button onClick={()=>{setFiles(p=>p.filter(x=>x.id!==f.id));toast('تم الحذف','error');}} style={{background:'rgba(239,68,68,.1)',border:'none',borderRadius:6,padding:'3px 7px',cursor:'pointer',color:'#f87171',fontSize:11,fontFamily:'Tajawal,sans-serif'}}>🗑️</button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ):(
+          <div style={{display:'flex',flexDirection:'column',gap:6}}>
+            {filtered.map(f=>{
+              const isSel=selected.includes(f.id);
+              return(
+                <div key={f.id} style={{display:'flex',alignItems:'center',gap:12,padding:'11px 14px',background:isSel?'rgba(56,189,248,.08)':'rgba(8,18,36,.7)',border:`1px solid ${isSel?'rgba(56,189,248,.3)':'rgba(26,122,138,.1)'}`,borderRadius:10}}>
+                  <input type="checkbox" checked={isSel} onChange={()=>toggleSel(f.id)} style={{accentColor:'#38bdf8'}}/>
+                  <span style={{fontSize:20}}>{getFI(f.name)}</span>
+                  <span style={{color:'#e2e8f0',fontSize:13,fontWeight:600,flex:1,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{f.name}</span>
+                  <span style={{color:'#64748b',fontSize:12,flexShrink:0}}>{fmtSize(f.size)}</span>
+                  <span style={{color:'#475569',fontSize:11,flexShrink:0}}>{f.folder}</span>
+                  <div style={{display:'flex',gap:5}}>
+                    <button onClick={()=>setPreview(f)} style={{background:'rgba(168,85,247,.1)',border:'none',borderRadius:6,padding:'4px 9px',cursor:'pointer',color:'#d8b4fe',fontSize:13,fontFamily:'Tajawal,sans-serif'}}>👁️</button>
+                    <button onClick={()=>{setFiles(p=>p.filter(x=>x.id!==f.id));toast('تم الحذف','error');}} style={{background:'rgba(239,68,68,.1)',border:'none',borderRadius:6,padding:'4px 9px',cursor:'pointer',color:'#f87171',fontSize:13,fontFamily:'Tajawal,sans-serif'}}>🗑️</button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      {preview&&(
+        <Modal onClose={()=>setPreview(null)} title={`👁️ ${preview.name}`} maxW={560}>
+          {preview.preview?<img src={preview.preview} alt="" style={{width:'100%',borderRadius:12,marginBottom:16}}/>
+          :<div style={{textAlign:'center',padding:40,fontSize:64}}>{getFI(preview.name)}</div>}
+          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
+            {[['الاسم',preview.name],['الحجم',fmtSize(preview.size)],['المجلد',preview.folder],['التاريخ',preview.date]].map(([k,v])=>(
+              <div key={k} style={{background:'rgba(56,189,248,.05)',borderRadius:10,padding:'10px 12px'}}>
+                <div style={{color:'#64748b',fontSize:11}}>{k}</div>
+                <div style={{color:'#e2e8f0',fontWeight:600,fontSize:13}}>{v}</div>
+              </div>
+            ))}
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+}
+
+/* ── Transfer ── */
+function TransferPage({org,toast}){
+  const exportOrg=()=>{
+    const d=JSON.stringify({type:'org-chart',version:'3.1',timestamp:new Date().toISOString(),center:'مركز المياه والبيئة والطاقة',university:'الجامعة الأردنية',data:org},null,2);
+    const b=new Blob([d],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`org-chart-${Date.now()}.json`;a.click();
+    toast('تم تصدير الهيكل التنظيمي ✓','success');
+  };
+  const exportCSV=()=>{
+    const all=flatTree(org);
+    const rows=[['المعرف','المسمى','الاسم','القسم','المستوى','البريد','الهاتف'],...all.map(n=>[n.id,n.role,n.name,n.dept,n.level,n.email,n.phone])];
+    const csv=rows.map(r=>r.map(c=>`"${c||''}"`).join(',')).join('\n');
+    const b=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`employees-${Date.now()}.csv`;a.click();
+    toast('تم تصدير CSV ✓','success');
+  };
+  const impRef=useRef();
+  const handleImport=e=>{
+    const f=e.target.files[0];if(!f)return;
+    const r=new FileReader();
+    r.onload=ev=>{try{const p=JSON.parse(ev.target.result);if(p.type==='org-chart')toast('تم التحقق. استيراد يتطلب تأكيد المدير.','info');else toast('صيغة الملف غير صحيحة','error');}catch{toast('ملف غير صالح','error');}};
+    r.readAsText(f);e.target.value='';
+  };
+  const cards=[
+    {title:'تصدير الهيكل التنظيمي',desc:'تصدير البيانات بصيغة JSON الكاملة',e:'📊',c:'#38bdf8',fn:exportOrg,btn:'تصدير JSON'},
+    {title:'تصدير قائمة الموظفين',desc:'تصدير بصيغة CSV لـ Excel',e:'📋',c:'#22c55e',fn:exportCSV,btn:'تصدير CSV'},
+    {title:'استيراد بيانات',desc:'استيراد ملف JSON تم تصديره مسبقاً',e:'📥',c:'#a78bfa',fn:()=>impRef.current?.click(),btn:'استيراد JSON'},
+    {title:'نسخ احتياطي شامل',desc:'حفظ نسخة احتياطية لجميع البيانات',e:'💾',c:'#f59e0b',fn:()=>{exportOrg();toast('تم إنشاء النسخة ✓','success');},btn:'إنشاء نسخة'},
+  ];
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900,marginBottom:6}}>🔄 تصدير واستيراد البيانات</h1>
+      <p style={{color:'#64748b',fontSize:13,marginBottom:22}}>إدارة بيانات المركز — نقل وأرشفة وحفظ المعلومات</p>
+      <input ref={impRef} type="file" accept=".json" style={{display:'none'}} onChange={handleImport}/>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(260px,1fr))',gap:14}}>
+        {cards.map(c=>(
+          <div key={c.title} className="mc fiu" style={{border:`1px solid ${c.c}25`}}>
+            <div style={{fontSize:34,marginBottom:10}}>{c.e}</div>
+            <h3 style={{color:'#e2e8f0',fontWeight:800,fontSize:14,marginBottom:7}}>{c.title}</h3>
+            <p style={{color:'#64748b',fontSize:13,lineHeight:1.7,marginBottom:14}}>{c.desc}</p>
+            <button onClick={c.fn} style={{width:'100%',padding:'10px',borderRadius:10,border:`1px solid ${c.c}50`,background:`${c.c}12`,color:c.c,cursor:'pointer',fontWeight:700,fontSize:13,fontFamily:'Tajawal,sans-serif',transition:'all .2s'}}>{c.btn}</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Settings ── */
+function SettingsPage({toast,centerLogo,setCenterLogo}){
+  const [settings,setSettings]=useState({notify:true,darkMode:true,autoSave:true,sound:false,compact:false});
+  const [cName,setCName]=useState('مركز المياه والبيئة والطاقة');
+  const logoRef=useRef();
+  const toggle=k=>setSettings(p=>{const ns={...p,[k]:!p[k]};toast(`${ns[k]?'✅ تم تفعيل':'⭕ تم تعطيل'} الإعداد`,'success');return ns;});
+  const handleLogo=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{setCenterLogo(ev.target.result);toast('تم تحديث شعار المركز ✓','success');};r.readAsDataURL(f);};
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900,marginBottom:20}}>⚙️ الإعدادات</h1>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(290px,1fr))',gap:18}}>
+        <div className="gc" style={{padding:20}}>
+          <h3 style={{color:'#38bdf8',fontWeight:800,marginBottom:16,fontSize:14}}>🏷️ شعار المركز وهويته</h3>
+          <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:12,marginBottom:18}}>
+            <div style={{width:110,height:110,borderRadius:18,background:'rgba(56,189,248,.07)',border:'2px dashed rgba(56,189,248,.3)',display:'flex',alignItems:'center',justifyContent:'center',overflow:'hidden',cursor:'pointer'}} onClick={()=>logoRef.current?.click()}>
+              {centerLogo?<img src={centerLogo} alt="شعار" style={{width:'100%',height:'100%',objectFit:'contain',padding:6}}/>
+              :<div style={{textAlign:'center'}}><div style={{fontSize:38}}>💧</div><div style={{color:'#38bdf8',fontSize:11,marginTop:4}}>رفع الشعار</div></div>}
+            </div>
+            <input ref={logoRef} type="file" accept="image/*" style={{display:'none'}} onChange={handleLogo}/>
+            <div style={{display:'flex',gap:10}}>
+              <button className="gb" onClick={()=>logoRef.current?.click()} style={{padding:'7px 14px',fontSize:12}}>📷 تغيير الشعار</button>
+              {centerLogo&&<button className="rb" onClick={()=>{setCenterLogo(null);toast('تم حذف الشعار','error');}} style={{padding:'7px 14px',fontSize:12}}>🗑️ حذف</button>}
+            </div>
+          </div>
+          <label className="lbl">اسم المركز</label>
+          <input className="inp" value={cName} onChange={e=>setCName(e.target.value)} style={{marginBottom:10}}/>
+          <button className="gb" onClick={()=>toast('تم الحفظ ✓','success')} style={{width:'100%',padding:11,fontSize:13}}>حفظ التغييرات</button>
+        </div>
+        <div className="gc" style={{padding:20}}>
+          <h3 style={{color:'#38bdf8',fontWeight:800,marginBottom:14,fontSize:14}}>🔧 إعدادات التطبيق</h3>
+          {[['notify','🔔 الإشعارات','استلام إشعارات فورية'],['sound','🔊 الصوت','تشغيل صوت الإشعارات'],['autoSave','💾 الحفظ التلقائي','حفظ التغييرات آلياً'],['compact','📐 العرض المضغوط','محتوى مكثف في مساحة أقل']].map(([k,lbl,desc])=>(
+            <div key={k} style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'12px 0',borderBottom:'1px solid rgba(255,255,255,.05)'}}>
+              <div><div style={{color:'#e2e8f0',fontSize:13}}>{lbl}</div><div style={{color:'#475569',fontSize:11}}>{desc}</div></div>
+              <div onClick={()=>toggle(k)} style={{width:46,height:26,borderRadius:13,background:settings[k]?'#0e7490':'#1e3a5f',cursor:'pointer',position:'relative',transition:'all .3s',flexShrink:0}}>
+                <div style={{width:20,height:20,borderRadius:'50%',background:'#fff',position:'absolute',top:3,right:settings[k]?3:'auto',left:settings[k]?'auto':3,transition:'all .3s'}}/>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="gc" style={{padding:20}}>
+          <h3 style={{color:'#38bdf8',fontWeight:800,marginBottom:14,fontSize:14}}>ℹ️ معلومات النظام</h3>
+          {[['الإصدار','v3.1.0 — نسخة كاملة'],['المنصة','ويب • موبايل • لابتوب'],['اللغة','العربية (RTL)'],['الترخيص','الجامعة الأردنية © 2025'],['آخر تحديث',nowStr()]].map(([k,v])=>(
+            <div key={k} style={{display:'flex',justifyContent:'space-between',padding:'9px 0',borderBottom:'1px solid rgba(255,255,255,.04)',fontSize:13}}>
+              <span style={{color:'#64748b'}}>{k}</span><span style={{color:'#e2e8f0',fontWeight:600}}>{v}</span>
+            </div>
+          ))}
+          <button className="gb" onClick={()=>toast('تم إنشاء نسخة احتياطية ✓','success')} style={{width:'100%',padding:11,marginTop:14,fontSize:13}}>💾 نسخ احتياطي</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Generic Form Page ── */
+function FormPage({title,icon,fields,items,setItems,toast,statusOpts=[]}){
+  const [show,setShow]=useState(false);
+  const [form,setForm]=useState({});
+  const [filter,setFilter]=useState('all');
+  const set=(k,v)=>setForm(p=>({...p,[k]:v}));
+  const submit=()=>{
+    const req=fields.find(f=>f.req&&!form[f.key]);
+    if(req)return toast(`الحقل "${req.label}" مطلوب`,'warning');
+    setItems(p=>[{id:Date.now(),...form,status:statusOpts[0]||'قيد المعالجة',date:nowStr()},...p]);
+    setForm({});setShow(false);toast('تم الإرسال بنجاح ✓','success');
+  };
+  const SC={'قيد المعالجة':'#f59e0b','مكتمل':'#22c55e','مغلق':'#64748b','عاجل':'#ef4444','مجاب':'#22c55e','قيد المراجعة':'#38bdf8','مؤجل':'#a78bfa','مجدول':'#f59e0b','جارٍ':'#38bdf8','مخطط':'#a78bfa'};
+  const filtered=filter==='all'?items:items.filter(i=>i.status===filter);
+  return(
+    <div style={{padding:22,height:'100%',display:'flex',flexDirection:'column',gap:14}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
+        <div><h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900}}>{icon} {title}</h1><p style={{color:'#64748b',fontSize:13}}>{items.length} إجمالي</p></div>
+        <div style={{display:'flex',gap:10}}>
+          {statusOpts.length>0&&<select className="sel" style={{width:'auto',padding:'8px 12px',fontSize:13}} value={filter} onChange={e=>setFilter(e.target.value)}><option value="all">الكل</option>{statusOpts.map(s=><option key={s} value={s}>{s}</option>)}</select>}
+          <button className="gb" onClick={()=>setShow(true)} style={{padding:'9px 18px',fontSize:14}}>➕ جديد</button>
+        </div>
+      </div>
+      <div style={{flex:1,overflowY:'auto',display:'flex',flexDirection:'column',gap:9}}>
+        {filtered.length===0&&<div style={{textAlign:'center',color:'#475569',marginTop:60,fontSize:32}}>📭<div style={{fontSize:13,marginTop:12}}>لا توجد عناصر بعد</div></div>}
+        {filtered.map(item=>(
+          <div key={item.id} className="mc fiu" style={{display:'flex',gap:14,alignItems:'flex-start'}}>
+            <div style={{flex:1}}>
+              <div style={{display:'flex',alignItems:'center',gap:9,marginBottom:6,flexWrap:'wrap'}}>
+                <span style={{color:'#e2e8f0',fontWeight:700,fontSize:14}}>{item.title||item.name||'—'}</span>
+                {item.status&&<span style={{background:`${SC[item.status]||'#64748b'}20`,color:SC[item.status]||'#64748b',border:`1px solid ${SC[item.status]||'#64748b'}40`,borderRadius:20,padding:'2px 9px',fontSize:11,fontWeight:700}}>{item.status}</span>}
+                {item.priority&&<span style={{background:item.priority==='عاجل'?'rgba(239,68,68,.2)':item.priority==='متوسط'?'rgba(245,158,11,.2)':'rgba(34,197,94,.2)',color:item.priority==='عاجل'?'#f87171':item.priority==='متوسط'?'#fcd34d':'#86efac',borderRadius:20,padding:'2px 9px',fontSize:11,fontWeight:700}}>{item.priority}</span>}
+              </div>
+              {item.desc&&<p style={{color:'#94a3b8',fontSize:13,lineHeight:1.7}}>{item.desc}</p>}
+              <div style={{color:'#475569',fontSize:11,marginTop:5}}>📅 {item.date}</div>
+            </div>
+            <div style={{display:'flex',gap:6,flexDirection:'column',alignItems:'flex-end'}}>
+              {statusOpts.length>0&&<select className="sel" style={{width:'auto',padding:'5px 9px',fontSize:12}} value={item.status} onChange={e=>setItems(p=>p.map(i=>i.id===item.id?{...i,status:e.target.value}:i))}>{statusOpts.map(s=><option key={s} value={s}>{s}</option>)}</select>}
+              <button onClick={()=>setItems(p=>p.filter(i=>i.id!==item.id))} style={{background:'rgba(239,68,68,.15)',border:'1px solid rgba(239,68,68,.25)',borderRadius:8,padding:'5px 9px',cursor:'pointer',color:'#f87171',fontSize:13,fontFamily:'Tajawal,sans-serif'}}>🗑️</button>
+            </div>
+          </div>
+        ))}
+      </div>
+      {show&&(
+        <Modal onClose={()=>setShow(false)} title={`➕ ${title}`}>
+          {fields.map(f=>(
+            <div key={f.key} style={{marginBottom:13}}>
+              <label className="lbl">{f.label}{f.req?' *':''}</label>
+              {f.type==='textarea'?<textarea className="inp" rows={3} value={form[f.key]||''} onChange={e=>set(f.key,e.target.value)} placeholder={f.label} style={{resize:'vertical'}}/>
+              :f.type==='select'?<select className="sel" value={form[f.key]||''} onChange={e=>set(f.key,e.target.value)}><option value="">اختر...</option>{f.opts.map(o=><option key={o} value={o}>{o}</option>)}</select>
+              :<input className="inp" type={f.type||'text'} value={form[f.key]||''} onChange={e=>set(f.key,e.target.value)} placeholder={f.label}/>}
+            </div>
+          ))}
+          <div style={{display:'flex',gap:12,marginTop:8}}>
+            <button className="gb" onClick={submit} style={{flex:1,padding:13,fontSize:15}}>إرسال</button>
+            <button onClick={()=>setShow(false)} style={{flex:1,padding:13,borderRadius:10,border:'1px solid rgba(255,255,255,.1)',background:'transparent',color:'#94a3b8',cursor:'pointer'}}>إلغاء</button>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+}
+
+/* ── Satisfaction ── */
+function SatisfactionPage({toast}){
+  const [rating,setRating]=useState(0);
+  const [dept,setDept]=useState('');
+  const [comment,setComment]=useState('');
+  const [results,setResults]=useState([
+    {label:'بيئة العمل',score:4.2,count:38},{label:'الراتب والمزايا',score:3.5,count:38},
+    {label:'الإدارة والقيادة',score:4.5,count:38},{label:'فرص التطوير',score:3.8,count:38},
+    {label:'التواصل الداخلي',score:4.1,count:38},
+  ]);
+  const [done,setDone]=useState(false);
+  const submit=()=>{
+    if(!rating)return toast('الرجاء اختيار التقييم','warning');
+    setResults(p=>p.map(r=>({...r,score:+((r.score*r.count+rating)/(r.count+1)).toFixed(2),count:r.count+1})));
+    setDone(true);toast('شكراً! تم تسجيل رأيك ✓','success');
+    setTimeout(()=>{setDone(false);setRating(0);setComment('');},2000);
+  };
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900,marginBottom:6}}>😊 الرضا الوظيفي</h1>
+      <p style={{color:'#64748b',fontSize:13,marginBottom:20}}>قيّم بيئة عملك وساعدنا في التطوير المستمر</p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))',gap:18}}>
+        <div className="gc" style={{padding:20}}>
+          <h3 style={{color:'#e2e8f0',fontWeight:800,marginBottom:16,fontSize:14}}>📋 تقديم تقييم جديد</h3>
+          <label className="lbl">القسم</label>
+          <select className="sel" style={{marginBottom:12}} value={dept} onChange={e=>setDept(e.target.value)}>
+            <option value="">اختر قسمك...</option>
+            {['الإدارة','شعبة الباحثين','شعبة الدعم الفني','الديوان','المختبر'].map(d=><option key={d} value={d}>{d}</option>)}
+          </select>
+          <label className="lbl">التقييم العام</label>
+          <div style={{display:'flex',gap:10,justifyContent:'center',marginBottom:14}}>
+            {[1,2,3,4,5].map(s=><span key={s} onClick={()=>setRating(s)} style={{fontSize:30,cursor:'pointer',color:s<=rating?'#f59e0b':'#334155',transition:'all .15s'}}>★</span>)}
+          </div>
+          <textarea className="inp" rows={2} value={comment} onChange={e=>setComment(e.target.value)} placeholder="ملاحظاتك..." style={{marginBottom:12,resize:'vertical'}}/>
+          <button className="gb" onClick={submit} style={{width:'100%',padding:12,fontSize:14}}>{done?'✅ تم الإرسال!':'إرسال التقييم'}</button>
+        </div>
+        <div className="gc" style={{padding:20}}>
+          <h3 style={{color:'#e2e8f0',fontWeight:800,marginBottom:16,fontSize:14}}>📊 نتائج الاستطلاع</h3>
+          {results.map(r=>(
+            <div key={r.label} style={{marginBottom:12}}>
+              <div style={{display:'flex',justifyContent:'space-between',marginBottom:4}}>
+                <span style={{color:'#e2e8f0',fontSize:13,fontWeight:600}}>{r.label}</span>
+                <span style={{color:'#38bdf8',fontWeight:900}}>{r.score.toFixed(1)}/5</span>
+              </div>
+              <div className="pb"><div className="pf" style={{width:`${(r.score/5)*100}%`,background:'linear-gradient(90deg,#0e7490,#38bdf8)'}}/></div>
+            </div>
+          ))}
+          <div style={{marginTop:14,padding:'12px',background:'rgba(56,189,248,.07)',borderRadius:10,border:'1px solid rgba(56,189,248,.15)',textAlign:'center'}}>
+            <div style={{color:'#38bdf8',fontSize:22,fontWeight:900}}>{(results.reduce((a,r)=>a+r.score,0)/results.length).toFixed(1)}</div>
+            <div style={{color:'#64748b',fontSize:12}}>متوسط الرضا • {results[0].count} استجابة</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Challenges ── */
+function ChallengesPage({toast}){
+  const [items,setItems]=useState([
+    {id:1,year:'2025',challenge:'محدودية الميزانية البحثية',impact:'عالي',status:'جارٍ التعامل',solution:'البحث عن شراكات وتمويل خارجي'},
+    {id:2,year:'2025',challenge:'نقص كوادر في الذكاء الاصطناعي',impact:'عالي',status:'مخطط',solution:'برنامج تدريب وجذب الكفاءات'},
+    {id:3,year:'2026',challenge:'مواكبة التطورات التقنية المتسارعة',impact:'متوسط',status:'مراقبة',solution:'اشتراكات منصات تعليمية ومؤتمرات'},
+    {id:4,year:'2027',challenge:'الحفاظ على الريادة البحثية إقليمياً',impact:'عالي',status:'مراقبة',solution:'تعزيز الشراكات ونشر الأبحاث دولياً'},
+  ]);
+  const [show,setShow]=useState(false);
+  const [form,setForm]=useState({year:'2025',challenge:'',impact:'متوسط',solution:''});
+  const IC={'عالي':'#ef4444','متوسط':'#f59e0b','منخفض':'#22c55e'};
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:20,flexWrap:'wrap',gap:12}}>
+        <div><h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900}}>⚡ التحديات المتوقعة</h1></div>
+        <button className="gb" onClick={()=>setShow(true)} style={{padding:'9px 18px',fontSize:14}}>➕ إضافة</button>
+      </div>
+      {[...new Set(items.map(i=>i.year))].sort().map(yr=>(
+        <div key={yr} style={{marginBottom:20}}>
+          <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:10}}>
+            <span style={{color:'#38bdf8',fontWeight:800,fontSize:15}}>📅 عام {yr}</span>
+            <div style={{flex:1,height:1,background:'rgba(56,189,248,.15)'}}/>
+          </div>
+          {items.filter(i=>i.year===yr).map(item=>(
+            <div key={item.id} className="mc fiu" style={{marginBottom:9}}>
+              <div style={{display:'flex',gap:12,alignItems:'flex-start'}}>
+                <div style={{width:9,height:9,borderRadius:'50%',background:IC[item.impact]||'#64748b',marginTop:5,flexShrink:0}}/>
+                <div style={{flex:1}}>
+                  <div style={{display:'flex',gap:8,flexWrap:'wrap',marginBottom:5}}>
+                    <span style={{color:'#e2e8f0',fontWeight:700,fontSize:13}}>{item.challenge}</span>
+                    <span style={{background:`${IC[item.impact]||'#64748b'}20`,color:IC[item.impact]||'#64748b',borderRadius:20,padding:'2px 8px',fontSize:11,fontWeight:700}}>تأثير {item.impact}</span>
+                  </div>
+                  {item.solution&&<div style={{color:'#64748b',fontSize:12}}>💡 {item.solution}</div>}
+                </div>
+                <button onClick={()=>setItems(p=>p.filter(i=>i.id!==item.id))} style={{background:'rgba(239,68,68,.1)',border:'1px solid rgba(239,68,68,.2)',borderRadius:8,padding:'4px 9px',cursor:'pointer',color:'#f87171',flexShrink:0,fontFamily:'Tajawal,sans-serif'}}>🗑️</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+      {show&&(
+        <Modal onClose={()=>setShow(false)} title="➕ تحدٍّ جديد">
+          {[['العام','year','select',['2025','2026','2027','2028','2029','2030']],['التحدي *','challenge','textarea',null],['مستوى التأثير','impact','select',['عالي','متوسط','منخفض']],['الحل المقترح','solution','textarea',null]].map(([lbl,k,type,opts])=>(
+            <div key={k} style={{marginBottom:13}}>
+              <label className="lbl">{lbl}</label>
+              {type==='textarea'?<textarea className="inp" rows={2} value={form[k]} onChange={e=>setForm(p=>({...p,[k]:e.target.value}))} style={{resize:'vertical'}}/>:<select className="sel" value={form[k]} onChange={e=>setForm(p=>({...p,[k]:e.target.value}))}>{opts.map(o=><option key={o} value={o}>{o}</option>)}</select>}
+            </div>
+          ))}
+          <div style={{display:'flex',gap:12}}>
+            <button className="gb" onClick={()=>{if(!form.challenge.trim())return toast('التحدي مطلوب','warning');setItems(p=>[{id:Date.now(),...form,status:'مخطط'},...p]);setForm({year:'2025',challenge:'',impact:'متوسط',solution:''});setShow(false);toast('تمت الإضافة ✓','success');}} style={{flex:1,padding:13}}>إضافة</button>
+            <button onClick={()=>setShow(false)} style={{flex:1,padding:13,borderRadius:10,border:'1px solid rgba(255,255,255,.1)',background:'transparent',color:'#94a3b8',cursor:'pointer'}}>إلغاء</button>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+}
+
+/* ── Improvement ── */
+function ImprovementPage({toast}){
+  const [items,setItems]=useState([
+    {id:1,title:'تطوير البنية التحتية التقنية',cat:'تقني',progress:65,deadline:'2025-06',resp:'رئيس الدعم الفني'},
+    {id:2,title:'برنامج تطوير الكوادر البشرية',cat:'بشري',progress:40,deadline:'2025-12',resp:'مساعد المدير'},
+    {id:3,title:'تحسين منظومة الجودة والاعتماد',cat:'جودة',progress:80,deadline:'2025-06',resp:'مدير المركز'},
+    {id:4,title:'توسيع شبكة الشراكات الدولية',cat:'استراتيجي',progress:25,deadline:'2026-06',resp:'مدير المركز'},
+  ]);
+  const CC={'تقني':'#38bdf8','بشري':'#22c55e','جودة':'#f59e0b','استراتيجي':'#a78bfa'};
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900,marginBottom:20}}>📈 خطة التحسين</h1>
+      <div style={{display:'flex',flexDirection:'column',gap:12}}>
+        {items.map(item=>(
+          <div key={item.id} className="mc fiu">
+            <div style={{display:'flex',justifyContent:'space-between',marginBottom:9,flexWrap:'wrap',gap:8}}>
+              <span style={{color:'#e2e8f0',fontWeight:700,fontSize:14}}>{item.title}</span>
+              <div style={{display:'flex',gap:8,alignItems:'center'}}>
+                <span style={{background:`${CC[item.cat]||'#64748b'}20`,color:CC[item.cat]||'#64748b',borderRadius:20,padding:'2px 8px',fontSize:11,fontWeight:700}}>{item.cat}</span>
+                <span style={{color:'#38bdf8',fontWeight:900,fontSize:15}}>{item.progress}%</span>
+              </div>
+            </div>
+            <div className="pb" style={{marginBottom:9}}><div className="pf" style={{width:`${item.progress}%`,background:`linear-gradient(90deg,${CC[item.cat]||'#38bdf8'}99,${CC[item.cat]||'#38bdf8'})`}}/></div>
+            <div style={{display:'flex',justifyContent:'space-between',fontSize:12,color:'#64748b',flexWrap:'wrap',gap:5}}>
+              <span>👤 {item.resp}</span><span>📅 {item.deadline}</span>
+            </div>
+            <input type="range" min={0} max={100} value={item.progress} onChange={e=>setItems(p=>p.map(i=>i.id===item.id?{...i,progress:+e.target.value}:i))} style={{width:'100%',marginTop:10,accentColor:'#0e7490'}}/>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Targets ── */
+function TargetsPage(){
+  const items=[
+    {id:1,title:'نشر 20 بحثاً علمياً محكماً',current:12,target:20,unit:'بحث',year:'2025'},
+    {id:2,title:'رفع نسبة رضا الموظفين',current:72,target:85,unit:'%',year:'2025'},
+    {id:3,title:'تطوير 5 شراكات استراتيجية',current:2,target:5,unit:'شراكة',year:'2025'},
+    {id:4,title:'تدريب 90% من الكوادر رقمياً',current:55,target:90,unit:'%',year:'2025'},
+    {id:5,title:'الحصول على الاعتماد الدولي',current:1,target:1,unit:'اعتماد',year:'2025'},
+  ];
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900,marginBottom:20}}>🎯 النتائج المستهدفة</h1>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(270px,1fr))',gap:13}}>
+        {items.map(item=>{
+          const pct=Math.min(100,Math.round((item.current/item.target)*100));
+          const done=item.current>=item.target;
+          return(
+            <div key={item.id} className="mc fiu">
+              <div style={{display:'flex',justifyContent:'space-between',marginBottom:9}}>
+                <span style={{color:'#e2e8f0',fontWeight:700,fontSize:13,lineHeight:1.5}}>{item.title}</span>
+                {done&&<span style={{color:'#22c55e',fontSize:18}}>✅</span>}
+              </div>
+              <div style={{display:'flex',justifyContent:'space-between',marginBottom:7}}>
+                <span style={{color:'#94a3b8',fontSize:12}}>الحالي: <strong style={{color:'#e2e8f0'}}>{item.current} {item.unit}</strong></span>
+                <span style={{color:'#94a3b8',fontSize:12}}>الهدف: <strong style={{color:'#38bdf8'}}>{item.target} {item.unit}</strong></span>
+              </div>
+              <div className="pb" style={{marginBottom:5}}><div className="pf" style={{width:`${pct}%`,background:done?'linear-gradient(90deg,#059669,#22c55e)':pct>60?'linear-gradient(90deg,#0e7490,#38bdf8)':'linear-gradient(90deg,#1d4ed8,#3b82f6)'}}/></div>
+              <div style={{textAlign:'left',color:done?'#22c55e':'#38bdf8',fontWeight:900,fontSize:14}}>{pct}%</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ── Quality ── */
+function QualityPage(){
+  const KPIs=[
+    {name:'رضا المستفيدين',value:88,target:90,trend:'+3',c:'#22c55e'},
+    {name:'إنجاز الخطة البحثية',value:75,target:80,trend:'+8',c:'#38bdf8'},
+    {name:'الاستجابة للشكاوي',value:92,target:95,trend:'+5',c:'#f59e0b'},
+    {name:'التحول الرقمي',value:68,target:85,trend:'+12',c:'#a78bfa'},
+    {name:'تنفيذ خطة التدريب',value:80,target:90,trend:'+10',c:'#ec4899'},
+    {name:'الأبحاث المنشورة دولياً',value:60,target:70,trend:'+4',c:'#14b8a6'},
+  ];
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <h1 style={{color:'#38bdf8',fontSize:20,fontWeight:900,marginBottom:6}}>🏆 متطلبات الجودة</h1>
+      <p style={{color:'#64748b',fontSize:13,marginBottom:20}}>مؤشرات الأداء وفق معايير الجودة المؤسسية الحديثة</p>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(270px,1fr))',gap:12,marginBottom:20}}>
+        {KPIs.map(k=>(
+          <div key={k.name} className="mc fiu">
+            <div style={{display:'flex',justifyContent:'space-between',marginBottom:7}}>
+              <span style={{color:'#e2e8f0',fontWeight:700,fontSize:13}}>{k.name}</span>
+              <span style={{color:'#22c55e',fontSize:12,fontWeight:700}}>▲ {k.trend}</span>
+            </div>
+            <div style={{display:'flex',justifyContent:'space-between',marginBottom:7}}>
+              <span style={{color:k.value>=k.target?'#22c55e':'#f59e0b',fontWeight:900,fontSize:18}}>{k.value}%</span>
+              <span style={{color:'#64748b',fontSize:12,alignSelf:'center'}}>الهدف: {k.target}%</span>
+            </div>
+            <div className="pb"><div className="pf" style={{width:`${Math.min(100,(k.value/k.target)*100)}%`,background:`linear-gradient(90deg,${k.c}88,${k.c})`}}/></div>
+          </div>
+        ))}
+      </div>
+      <div className="gc" style={{padding:18}}>
+        <h3 style={{color:'#38bdf8',fontWeight:800,marginBottom:12,fontSize:14}}>📋 المعايير المعتمدة</h3>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))',gap:9}}>
+          {['EFQM للتميز المؤسسي','ISO 9001:2015','الاعتماد الأكاديمي','مؤشرات التنمية SDGs','رؤية الأردن 2025','معايير QS العالمية'].map(s=>(
+            <div key={s} style={{display:'flex',gap:9,padding:'9px 12px',background:'rgba(56,189,248,.05)',borderRadius:10,border:'1px solid rgba(56,189,248,.1)'}}>
+              <span style={{color:'#22c55e'}}>✅</span><span style={{color:'#e2e8f0',fontSize:12}}>{s}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Dashboard ── */
+function Dashboard({org,notifications,centerLogo}){
+  const all=flatTree(org);
+  return(
+    <div style={{padding:22,height:'100%',overflowY:'auto'}}>
+      <div style={{background:'linear-gradient(135deg,rgba(14,116,144,.15),rgba(8,145,178,.08))',border:'1px solid rgba(56,189,248,.12)',borderRadius:18,padding:'22px 24px',marginBottom:22,position:'relative',overflow:'hidden'}}>
+        <div style={{position:'absolute',top:-24,right:-24,fontSize:140,opacity:.04}}>💧</div>
+        <div style={{display:'flex',alignItems:'center',gap:16,flexWrap:'wrap'}}>
+          {centerLogo?<img src={centerLogo} alt="شعار" style={{height:60,objectFit:'contain'}}/>
+          :<div style={{width:60,height:60,borderRadius:14,background:'linear-gradient(135deg,#0e7490,#38bdf8)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:28,flexShrink:0}}>💧</div>}
+          <div>
+            <h1 style={{color:'#38bdf8',fontSize:18,fontWeight:900,marginBottom:4}}>مركز المياه والبيئة والطاقة</h1>
+            <p style={{color:'#64748b',fontSize:12}}>الجامعة الأردنية — نظام الإدارة الرقمية الذكية v3.1</p>
+            <div style={{display:'flex',gap:10,marginTop:10,flexWrap:'wrap'}}>
+              {['💧 المياه','🌿 البيئة','⚡ الطاقة'].map(t=><span key={t} style={{background:'rgba(56,189,248,.12)',border:'1px solid rgba(56,189,248,.2)',borderRadius:20,padding:'4px 12px',color:'#38bdf8',fontWeight:700,fontSize:11}}>{t}</span>)}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(130px,1fr))',gap:11,marginBottom:20}}>
+        {[['إجمالي الوظائف',all.length,'👥','#38bdf8'],['مشغولة',all.filter(n=>n.name).length,'✅','#22c55e'],['شاغرة',all.filter(n=>!n.name).length,'⭕','#f59e0b'],['إشعارات جديدة',notifications.filter(n=>!n.read).length,'🔔','#a78bfa']].map(([l,v,e,c])=>(
+          <div key={l} className="mc" style={{textAlign:'center',border:`1px solid ${c}22`}}>
+            <div style={{fontSize:26,marginBottom:6}}>{e}</div>
+            <div style={{color:c,fontSize:20,fontWeight:900}}>{v}</div>
+            <div style={{color:'#64748b',fontSize:11,marginTop:3}}>{l}</div>
+          </div>
+        ))}
+      </div>
+      <h2 style={{color:'#64748b',fontSize:12,fontWeight:800,marginBottom:11,letterSpacing:1}}>🚀 وصول سريع</h2>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(190px,1fr))',gap:11,marginBottom:20}}>
+        {[['الهيكل التنظيمي','🏢','#38bdf8','إدارة الموظفين والهيكل'],['شعبة الباحثين','🔬','#22c55e','الباحثون والأبحاث'],['الرؤيا والرسالة','🌟','#a78bfa','هوية المركز وتوجهاته'],['المساعد الذكي','🤖','#f59e0b','واتر بوت — المساعد الذكي'],['إدارة الملفات','📁','#ec4899','رفع وإدارة الوثائق'],['التواصل الاجتماعي','📲','#14b8a6','منصات التواصل']].map(([l,e,c,d])=>(
+          <div key={l} className="mc" style={{cursor:'pointer',display:'flex',gap:11,alignItems:'center'}}>
+            <div style={{width:42,height:42,borderRadius:12,background:`${c}14`,border:`1px solid ${c}28`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:20,flexShrink:0}}>{e}</div>
+            <div><div style={{color:'#e2e8f0',fontWeight:700,fontSize:13}}>{l}</div><div style={{color:'#475569',fontSize:11}}>{d}</div></div>
+          </div>
+        ))}
+      </div>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(270px,1fr))',gap:14}}>
+        <div className="gc" style={{padding:18}}>
+          <h3 style={{color:'#38bdf8',fontWeight:800,marginBottom:12,fontSize:13}}>📋 الإجراءات المطلوبة</h3>
+          {[{t:'تحديد مساعد مدير المركز',c:'#ef4444'},{t:'إدخال بيانات رئيس الديوان',c:'#f59e0b'},{t:'تحميل صور الموظفين',c:'#22c55e'},{t:'مراجعة مؤشرات الجودة',c:'#f59e0b'}].map((a,i)=>(
+            <div key={i} style={{display:'flex',gap:9,alignItems:'center',padding:'8px 0',borderBottom:'1px solid rgba(255,255,255,.04)'}}>
+              <span style={{width:8,height:8,borderRadius:'50%',background:a.c,display:'inline-block',flexShrink:0}}/>
+              <span style={{color:'#94a3b8',fontSize:12,flex:1}}>{a.t}</span>
+            </div>
+          ))}
+        </div>
+        <div className="gc" style={{padding:18}}>
+          <h3 style={{color:'#38bdf8',fontWeight:800,marginBottom:12,fontSize:13}}>📊 التوزيع الوظيفي</h3>
+          {Object.entries(LVLMAP).map(([k,v])=>{
+            const cnt=all.filter(n=>n.level===k).length;
+            return(
+              <div key={k} style={{marginBottom:10}}>
+                <div style={{display:'flex',justifyContent:'space-between',marginBottom:4}}>
+                  <span className={`chip ${v.cls}`}>{v.label}</span>
+                  <span style={{color:'#94a3b8',fontSize:12}}>{cnt} وظيفة</span>
+                </div>
+                <div className="pb"><div className="pf" style={{width:`${(cnt/all.length)*100}%`,background:`linear-gradient(90deg,${v.accent}88,${v.accent})`}}/></div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── INTEGRITY PAGE ── */
+const INTEGRITY_DATA=[
+  {id:1,icon:'⚖️',title:'أولاً: سيادة القانون',color:'#38bdf8',subs:['وجود قوانين وأنظمة واضحة الأحكام والصلاحيات','تطبيق القانون بعدالة ومساواة دون تمييز','مواءمة التشريعات الوطنية للاتفاقيات الدولية لمكافحة الفساد'],kpis:['التشريعات المرجعية هي أساس إجراءات الإدارة العامة','إصدار وإنفاذ الأنظمة والتعليمات بموجب القوانين','عدم وجود تعارض بالتشريعات','تبني سياسات لمحاربة الواسطة والمحسوبية']},
+  {id:2,icon:'🏛️',title:'ثانياً: المساءلة والمحاسبة',color:'#22c55e',subs:['تحديد الصلاحيات والواجبات القانونية والمالية للمسؤولين','تحديث وتفعيل مدونات السلوك الوظيفي في القطاع العام','وجود إجراءات رقابية وتأديبية واضحة ومعلنة'],kpis:['نسبة المؤسسات الملتزمة بمدونات السلوك','آلية الثواب والعقاب تبعاً لنتائج التقارير','تقديم المسؤولين للذمم المالية وإشهارها']},
+  {id:3,icon:'🔍',title:'ثالثاً: الشفافية',color:'#f59e0b',subs:['توثيق المعلومات من قرارات وإجراءات ونماذج','تصنيف المعلومات وفق معايير واضحة','النهج التشاركي مع الأطراف ذات العلاقة'],kpis:['نماذج واضحة لكافة الخدمات','نسبة الوثائق المصنفة وفق قانون المعلومات','آليات التواصل المتعددة مع المواطنين']},
+  {id:4,icon:'⚡',title:'رابعاً: العدالة وتكافؤ الفرص',color:'#a78bfa',subs:['معيار جودة الخدمة','العدالة والمساواة بين الموظفين','تكافؤ الفرص في الحصول على الخدمات'],kpis:['عدد الشكاوى التي يتم فحص امتثالها','الشكاوى المتعلقة بشؤون الموظفين','المساواة بين الموظف والموظفة']},
+  {id:5,icon:'🏆',title:'خامساً: الحوكمة الرشيدة',color:'#ec4899',subs:['التخطيط الاستراتيجي والتنظيم','الرقابة والتقييم المستمر','الاستخدام الأمثل للموارد'],kpis:['مجالس حوكمة أو لجان تخصصية','أهداف استراتيجية محددة بإطار زمني','نسبة الإنجاز في الخطط التنفيذية']},
+];
+function IntegrityPage(){
+  const [open,setOpen]=useState(null);
+  const [tab,setTab]=useState('standards');
+  const dl=()=>{const c=`معايير النزاهة الوطنية في القطاع العام\nهيئة النزاهة ومكافحة الفساد — المملكة الأردنية الهاشمية\nع/1/1-ع/1938 | 2017/8/8\n\n`+INTEGRITY_DATA.map(s=>`${s.title}\nالمعايير الفرعية:\n${s.subs.map((x,i)=>`${i+1}. ${x}`).join('\n')}\nمؤشرات القياس:\n${s.kpis.map(x=>`- ${x}`).join('\n')}`).join('\n\n');const b=new Blob([c],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='معايير_النزاهة_الوطنية.txt';a.click();};
+  return(<div style={{padding:22,height:'100%',overflowY:'auto'}}>
+    <div style={{background:'linear-gradient(135deg,rgba(14,116,144,.12),rgba(56,189,248,.06))',border:'1px solid rgba(56,189,248,.18)',borderRadius:18,padding:'20px 24px',marginBottom:20,position:'relative',overflow:'hidden'}}>
+      <div style={{position:'absolute',top:-14,right:-14,fontSize:100,opacity:.04}}>⚖️</div>
+      <div style={{display:'flex',gap:14,alignItems:'flex-start',flexWrap:'wrap'}}>
+        <div style={{width:54,height:54,borderRadius:13,background:'linear-gradient(135deg,#0e7490,#38bdf8)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:24,flexShrink:0}}>⚖️</div>
+        <div style={{flex:1}}><h1 style={{color:'#38bdf8',fontSize:19,fontWeight:900,marginBottom:5}}>معايير النزاهة الوطنية في القطاع العام</h1>
+          <div style={{display:'flex',gap:9,flexWrap:'wrap',marginBottom:5}}><span style={{background:'rgba(56,189,248,.12)',borderRadius:14,padding:'3px 11px',color:'#38bdf8',fontSize:12,fontWeight:700}}>📋 ع/1/1-ع/1938</span><span style={{background:'rgba(34,197,94,.12)',borderRadius:14,padding:'3px 11px',color:'#34d399',fontSize:12,fontWeight:700}}>📅 2017/8/8</span></div>
+          <p style={{color:'#546e7a',fontSize:13}}>هيئة النزاهة ومكافحة الفساد — المملكة الأردنية الهاشمية</p>
+        </div>
+      </div>
+      <div style={{marginTop:13,padding:'11px 14px',background:'rgba(56,189,248,.05)',borderRadius:11,border:'1px solid rgba(56,189,248,.1)'}}><p style={{color:'#78909c',fontSize:13,lineHeight:1.8}}>قرار مجلس الهيئة رقم 13 لسنة 2016 — المعايير الخمسة: <strong style={{color:'#38bdf8'}}>سيادة القانون • المساءلة والمحاسبة • الشفافية • العدالة وتكافؤ الفرص • الحوكمة الرشيدة</strong></p></div>
+    </div>
+    <div style={{display:'flex',gap:9,marginBottom:18,flexWrap:'wrap'}}>
+      {[['standards','📋 المعايير والمؤشرات'],['overview','📊 نظرة عامة'],['apply','✅ التطبيق في المركز']].map(([k,l])=>(<button key={k} onClick={()=>setTab(k)} style={{padding:'9px 18px',borderRadius:10,border:`1px solid ${tab===k?'rgba(56,189,248,.5)':'rgba(255,255,255,.08)'}`,background:tab===k?'rgba(56,189,248,.15)':'transparent',color:tab===k?'#38bdf8':'#64748b',cursor:'pointer',fontWeight:tab===k?700:400,fontSize:13,fontFamily:'Tajawal,sans-serif'}}>{l}</button>))}
+      <button onClick={dl} style={{padding:'9px 18px',borderRadius:10,border:'1px solid rgba(245,158,11,.4)',background:'rgba(245,158,11,.12)',color:'#f59e0b',cursor:'pointer',fontWeight:700,fontSize:13,fontFamily:'Tajawal,sans-serif',marginRight:'auto'}}>⬇️ تحميل الوثيقة</button>
+    </div>
+    {tab==='standards'&&INTEGRITY_DATA.map((std,i)=>(<div key={std.id} style={{background:'linear-gradient(135deg,rgba(12,106,133,.06),rgba(56,189,248,.03))',border:'1px solid rgba(56,189,248,.16)',borderRadius:14,padding:18,marginBottom:12}}>
+      <div onClick={()=>setOpen(open===i?null:i)} style={{cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+        <div style={{display:'flex',alignItems:'center',gap:12}}><div style={{width:46,height:46,borderRadius:11,background:`${std.color}18`,border:`2px solid ${std.color}40`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:21,flexShrink:0}}>{std.icon}</div>
+          <div><h3 style={{color:'#e2e8f0',fontWeight:900,fontSize:14}}>{std.title}</h3><div style={{display:'flex',gap:7,marginTop:4}}><span style={{background:`${std.color}18`,color:std.color,borderRadius:12,padding:'2px 8px',fontSize:10,fontWeight:700}}>{std.subs.length} معيار فرعي</span><span style={{background:'rgba(255,255,255,.05)',color:'#374151',borderRadius:12,padding:'2px 8px',fontSize:10}}>{std.kpis.length} مؤشر</span></div></div>
+        </div>
+        <span style={{color:std.color,fontSize:17,transition:'transform .3s',display:'block',transform:open===i?'rotate(180deg)':'none'}}>▾</span>
+      </div>
+      {open===i&&(<div className="fiu" style={{marginTop:14}}><div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:12}}>
+        <div><h4 style={{color:std.color,fontWeight:800,fontSize:12,marginBottom:9}}>■ المعايير الفرعية</h4>{std.subs.map((s,j)=>(<div key={j} style={{display:'flex',gap:9,marginBottom:7,padding:'7px 11px',background:'rgba(56,189,248,.04)',borderRadius:9}}><span style={{color:std.color,fontWeight:900,flexShrink:0}}>{j+1}.</span><span style={{color:'#e2e8f0',fontSize:12.5,lineHeight:1.7}}>{s}</span></div>))}</div>
+        <div><h4 style={{color:'#f59e0b',fontWeight:800,fontSize:12,marginBottom:9}}>📊 مؤشرات القياس</h4>{std.kpis.map((k,j)=>(<div key={j} style={{display:'flex',gap:9,marginBottom:7,alignItems:'flex-start'}}><span style={{color:'#f59e0b',fontSize:10,flexShrink:0,marginTop:3}}>◆</span><span style={{color:'#78909c',fontSize:12,lineHeight:1.7}}>{k}</span></div>))}</div>
+      </div></div>)}
+    </div>))}
+    {tab==='overview'&&(<div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:12}}>{INTEGRITY_DATA.map(std=>(<div key={std.id} className="mc" style={{textAlign:'center',border:`1px solid ${std.color}22`}}><div style={{fontSize:34,marginBottom:9}}>{std.icon}</div><div style={{color:std.color,fontWeight:900,fontSize:12.5,marginBottom:7,lineHeight:1.4}}>{std.title}</div><div style={{display:'flex',gap:7,justifyContent:'center'}}><div style={{background:`${std.color}18`,borderRadius:7,padding:'5px 9px'}}><div style={{color:std.color,fontWeight:900,fontSize:16}}>{std.subs.length}</div><div style={{color:'#374151',fontSize:10}}>معيار</div></div><div style={{background:'rgba(245,158,11,.1)',borderRadius:7,padding:'5px 9px'}}><div style={{color:'#f59e0b',fontWeight:900,fontSize:16}}>{std.kpis.length}</div><div style={{color:'#374151',fontSize:10}}>مؤشر</div></div></div></div>))}</div>)}
+    {tab==='apply'&&(<div className="mc"><h3 style={{color:'#38bdf8',fontWeight:800,fontSize:14,marginBottom:14}}>✅ تطبيق معايير النزاهة في مركز المياه والبيئة والطاقة</h3>{[{l:'سيادة القانون',s:92,c:'#38bdf8',n:'الالتزام بأنظمة الجامعة'},{l:'المساءلة والمحاسبة',s:85,c:'#22c55e',n:'تفعيل مدونة السلوك'},{l:'الشفافية',s:88,c:'#f59e0b',n:'نشر القرارات رسمياً'},{l:'العدالة وتكافؤ الفرص',s:90,c:'#a78bfa',n:'معايير موضوعية في التوظيف'},{l:'الحوكمة الرشيدة',s:82,c:'#ec4899',n:'خطط استراتيجية دورية'}].map(item=>(<div key={item.l} style={{marginBottom:13}}><div style={{display:'flex',justifyContent:'space-between',marginBottom:5,flexWrap:'wrap',gap:5}}><span style={{color:'#e2e8f0',fontSize:13,fontWeight:600}}>{item.l}</span><div style={{display:'flex',gap:10,alignItems:'center'}}><span style={{color:'#546e7a',fontSize:12}}>{item.n}</span><span style={{color:item.c,fontWeight:900,fontSize:14}}>{item.s}%</span></div></div><div className="pb"><div style={{height:'100%',borderRadius:4,width:`${item.s}%`,background:`linear-gradient(90deg,${item.c}88,${item.c})`,transition:'width 1.2s ease'}}/></div></div>))}</div>)}
+  </div>);
+}
+
+/* ── VOICE PAGE ── */
+function VoicePage({toast}){
+  const [isRec,setIsRec]=useState(false);
+  const [text,setText]=useState('');
+  const [translated,setTranslated]=useState('');
+  const [lang,setLang]=useState('en');
+  const [translating,setTranslating]=useState(false);
+  const [history,setHistory]=useState([]);
+  const recRef=useRef();
+  const startRec=()=>{
+    if(!('webkitSpeechRecognition' in window)&&!('SpeechRecognition' in window))return toast('استخدم Chrome أو Edge للتسجيل الصوتي','warning');
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    const r=new SR();r.lang='ar-JO';r.continuous=true;r.interimResults=true;
+    r.onresult=e=>{let f='';for(let i=e.resultIndex;i<e.results.length;i++)if(e.results[i].isFinal)f+=e.results[i][0].transcript;if(f)setText(p=>p+(p?' ':'')+f);};
+    r.onerror=()=>{setIsRec(false);toast('خطأ في التسجيل','error');};
+    r.onend=()=>setIsRec(false);
+    r.start();recRef.current=r;setIsRec(true);toast('🎙️ جارٍ التسجيل — تكلم الآن','info');
+  };
+  const stopRec=()=>{recRef.current?.stop();setIsRec(false);toast('تم إيقاف التسجيل ✓','success');};
+  const LANGS={en:'الإنجليزية',fr:'الفرنسية',de:'الألمانية',es:'الإسبانية',zh:'الصينية',tr:'التركية',he:'العبرية',ar:'عربية فصحى'};
+  const doTranslate=async()=>{
+    if(!text.trim())return toast('أدخل نصاً أولاً','warning');
+    setTranslating(true);setTranslated('');
+    try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,system:'أنت مترجم محترف. قدم الترجمة مباشرة دون مقدمات.',messages:[{role:'user',content:`ترجم النص التالي إلى اللغة ${LANGS[lang]||lang}:\n\n"${text}"`}]})});const d=await r.json();const rep=d.content?.find(b=>b.type==='text')?.text||'خطأ في الترجمة';setTranslated(rep);setHistory(p=>[{id:Date.now(),original:text,translated:rep,lang:LANGS[lang],date:new Date().toLocaleDateString('ar-SA')},...p.slice(0,9)]);toast('تمت الترجمة ✓','success');}
+    catch{setTranslated('خطأ في الترجمة. تحقق من الاتصال.');toast('خطأ في الترجمة','error');}
+    setTranslating(false);
+  };
+  return(<div style={{padding:22,height:'100%',overflowY:'auto'}}>
+    <div style={{display:'flex',alignItems:'center',gap:12,marginBottom:20}}><div style={{width:52,height:52,borderRadius:13,background:'linear-gradient(135deg,#6d28d9,#a78bfa)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:24}}>🎙️</div><div><h1 style={{color:'#a78bfa',fontSize:20,fontWeight:900}}>تحويل الصوت إلى نص والترجمة الذكية</h1><p style={{color:'#546e7a',fontSize:13}}>مدعوم بـ Claude AI</p></div></div>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(270px,1fr))',gap:16,marginBottom:16}}>
+      <div className="mc"><h3 style={{color:'#a78bfa',fontWeight:800,marginBottom:16,fontSize:14}}>🎙️ التسجيل الصوتي</h3>
+        <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:16}}>
+          <button onClick={isRec?stopRec:startRec} style={{width:72,height:72,borderRadius:'50%',border:'none',cursor:'pointer',fontSize:28,background:isRec?'linear-gradient(135deg,#b91c1c,#ef4444)':'linear-gradient(135deg,#0e7490,#38bdf8)',boxShadow:isRec?'none':'0 8px 22px rgba(14,116,144,.4)'}}>{isRec?'⏹️':'🎙️'}</button>
+          <div style={{textAlign:'center'}}><div style={{color:isRec?'#ef4444':'#78909c',fontWeight:800,fontSize:13,marginBottom:3}}>{isRec?'🔴 جارٍ التسجيل...':'اضغط للتسجيل'}</div><div style={{color:'#374151',fontSize:12}}>يعمل على Chrome وEdge</div></div>
+        </div>
+        <div style={{height:1,background:'rgba(255,255,255,.06)',margin:'14px 0'}}/>
+        <div style={{marginBottom:12}}><div style={{color:'#94a3b8',fontSize:12,marginBottom:8,fontWeight:600}}>اللغة المستهدفة</div>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:6}}>
+            {Object.entries(LANGS).map(([c,l])=>(<button key={c} onClick={()=>setLang(c)} style={{padding:'6px 7px',borderRadius:9,border:`1px solid ${lang===c?'rgba(167,139,250,.5)':'rgba(255,255,255,.06)'}`,background:lang===c?'rgba(167,139,250,.15)':'transparent',color:lang===c?'#a78bfa':'#64748b',cursor:'pointer',fontSize:11,fontFamily:'Tajawal,sans-serif'}}>{['🇺🇸','🇫🇷','🇩🇪','🇪🇸','🇨🇳','🇹🇷','🇮🇱','📝'][['en','fr','de','es','zh','tr','he','ar'].indexOf(c)]} {l}</button>))}
+          </div>
+        </div>
+        <button onClick={doTranslate} disabled={translating||!text.trim()} style={{width:'100%',padding:12,borderRadius:10,border:'none',cursor:translating||!text.trim()?'not-allowed':'pointer',background:'linear-gradient(135deg,#6d28d9,#a78bfa)',color:'#fff',fontWeight:800,fontSize:14,opacity:translating||!text.trim()?.5:1,fontFamily:'Tajawal,sans-serif'}}>{translating?'⏳ جارٍ الترجمة...':'🌐 ترجم الآن'}</button>
+      </div>
+      <div className="mc"><h3 style={{color:'#a78bfa',fontWeight:800,marginBottom:12,fontSize:14}}>📝 النص والترجمة</h3>
+        <div style={{color:'#78909c',fontSize:12,marginBottom:5,fontWeight:600}}>النص الأصلي (عربي)</div>
+        <textarea className="inp" rows={4} value={text} onChange={e=>setText(e.target.value)} placeholder="يظهر هنا النص من الصوت، أو اكتب مباشرة..." style={{resize:'vertical',marginBottom:10,lineHeight:1.8}}/>
+        <div style={{color:'#78909c',fontSize:12,marginBottom:5,fontWeight:600}}>النص المترجم</div>
+        {translating?<div style={{display:'flex',gap:5,alignItems:'center',padding:'14px 0'}}>{[0,1,2,3].map(i=><div key={i} style={{width:8,height:8,borderRadius:'50%',background:'#a78bfa',animation:`wave 1s ease-in-out ${i*0.15}s infinite`}}/>)}<span style={{color:'#546e7a',fontSize:12,marginRight:8}}>جارٍ الترجمة بالذكاء الاصطناعي...</span></div>
+        :<textarea className="inp" rows={4} value={translated} readOnly placeholder="يظهر هنا النص المترجم..." style={{resize:'vertical',lineHeight:1.8,opacity:translated?1:.5}}/>}
+        {translated&&<button onClick={()=>navigator.clipboard?.writeText(translated).then(()=>toast('تم النسخ ✓','success'))} style={{width:'100%',marginTop:9,padding:'8px',borderRadius:9,border:'1px solid rgba(255,255,255,.1)',background:'transparent',color:'#64748b',cursor:'pointer',fontSize:12,fontFamily:'Tajawal,sans-serif'}}>📋 نسخ الترجمة</button>}
+      </div>
+    </div>
+    {history.length>0&&(<div className="mc"><div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}><h3 style={{color:'#a78bfa',fontWeight:800,fontSize:14}}>🕐 سجل الترجمات ({history.length})</h3><button onClick={()=>setHistory([])} style={{background:'rgba(239,68,68,.1)',border:'1px solid rgba(239,68,68,.2)',borderRadius:7,padding:'4px 10px',cursor:'pointer',color:'#f87171',fontSize:12,fontFamily:'Tajawal,sans-serif'}}>مسح</button></div>
+      <div style={{display:'flex',flexDirection:'column',gap:9}}>{history.map(h=>(<div key={h.id} className="mc" style={{padding:'12px 14px'}}><div style={{display:'flex',justifyContent:'space-between',marginBottom:5}}><span style={{background:'rgba(167,139,250,.18)',color:'#a78bfa',borderRadius:12,padding:'2px 8px',fontSize:10,fontWeight:700}}>🌐 {h.lang}</span><span style={{color:'#374151',fontSize:10}}>{h.date}</span></div><div style={{color:'#78909c',fontSize:13,marginBottom:5,lineHeight:1.6}}>{h.original}</div><div style={{color:'#e2e8f0',fontSize:13,lineHeight:1.6,borderRight:'2px solid #a78bfa',paddingRight:9}}>{h.translated}</div></div>))}</div>
+    </div>)}
+  </div>);
+}
+
+/* ── AICHATS PAGE ── */
+let aiChatDB=[];let aiChatId=1;
+function aiInsert(msg,isUser){aiChatDB.push({id:aiChatId++,user_id:1,message:msg,is_user:isUser,created_at:new Date().toISOString()});}
+function AIChatsPage({toast}){
+  const [filter,setFilter]=useState('all');
+  const [,forceUpdate]=useState(0);
+  const chats=filter==='user'?aiChatDB.filter(r=>r.is_user):filter==='bot'?aiChatDB.filter(r=>!r.is_user):aiChatDB;
+  return(<div style={{padding:20,height:'100%',display:'flex',flexDirection:'column',gap:14}}>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',flexWrap:'wrap',gap:12}}>
+      <div><h1 style={{color:'#22c55e',fontSize:20,fontWeight:900}}>💬 سجل المحادثات — AIChats Database</h1><p style={{color:'#546e7a',fontSize:13,marginTop:4}}>قاعدة البيانات التفاعلية للمحادثات مع المساعد الذكي</p></div>
+      <button onClick={()=>{aiChatDB=[];aiChatId=1;forceUpdate(n=>n+1);toast('تم مسح السجل','error');}} style={{background:'linear-gradient(135deg,#b91c1c,#ef4444)',color:'#fff',border:'none',borderRadius:9,padding:'8px 14px',cursor:'pointer',fontWeight:700,fontSize:13,fontFamily:'Tajawal,sans-serif'}}>🗑️ مسح السجل</button>
+    </div>
+    <div className="mc" style={{border:'1px solid rgba(34,197,94,.2)'}}>
+      <h3 style={{color:'#22c55e',fontWeight:800,fontSize:14,marginBottom:12}}>📋 هيكل جدول AIChats</h3>
+      <div style={{overflowX:'auto'}}><table style={{width:'100%',borderCollapse:'collapse',fontSize:13}}>
+        <thead><tr>{['الحقل','النوع','القيد','الوصف'].map(h=><th key={h} style={{background:'rgba(56,189,248,.1)',color:'#38bdf8',padding:'10px 14px',textAlign:'right',fontWeight:700,borderBottom:'1px solid rgba(56,189,248,.2)'}}>{h}</th>)}</tr></thead>
+        <tbody>
+          {[['id','INTEGER','PRIMARY KEY','معرف فريد لكل رسالة'],['user_id','INTEGER','FK → Users.id','المستخدم المرتبط بالرسالة'],['message','TEXT','NOT NULL','نص الرسالة'],['is_user','BOOLEAN','—','true = المستخدم · false = البوت'],['created_at','DATETIME','DEFAULT NOW()','وقت إنشاء الرسالة']].map(([f,t,c,d])=>(<tr key={f} style={{borderBottom:'1px solid rgba(255,255,255,.04)'}}><td style={{padding:'9px 14px',color:'#38bdf8'}}><code>{f}</code></td><td style={{padding:'9px 14px',color:'#f59e0b'}}>{t}</td><td style={{padding:'9px 14px',color:'#a78bfa'}}>{c}</td><td style={{padding:'9px 14px',color:'#94a3b8'}}>{d}</td></tr>))}
+        </tbody>
+      </table></div>
+    </div>
+    <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(120px,1fr))',gap:10}}>
+      {[['إجمالي',aiChatDB.length,'💬','#22c55e'],['المستخدم',aiChatDB.filter(r=>r.is_user).length,'👤','#38bdf8'],['البوت',aiChatDB.filter(r=>!r.is_user).length,'🤖','#a78bfa']].map(([l,v,e,c])=>(<div key={l} className="mc" style={{textAlign:'center',border:`1px solid ${c}22`,padding:12}}><div style={{fontSize:22,marginBottom:5}}>{e}</div><div style={{color:c,fontSize:19,fontWeight:900}}>{v}</div><div style={{color:'#546e7a',fontSize:11,marginTop:2}}>{l}</div></div>))}
+    </div>
+    <div style={{display:'flex',gap:8,flexWrap:'wrap'}}>
+      {['all:الكل','user:المستخدم','bot:البوت'].map(x=>{const[f,l]=x.split(':');const on=filter===f;return(<button key={f} onClick={()=>setFilter(f)} style={{padding:'6px 13px',borderRadius:9,border:`1px solid ${on?'rgba(56,189,248,.5)':'rgba(255,255,255,.08)'}`,background:on?'rgba(56,189,248,.15)':'transparent',color:on?'#38bdf8':'#64748b',cursor:'pointer',fontWeight:on?700:400,fontSize:12,fontFamily:'Tajawal,sans-serif'}}>{l}</button>);})}
+      <span style={{color:'#374151',fontSize:12,alignSelf:'center',marginRight:'auto'}}>{chats.length} رسالة</span>
+    </div>
+    <div style={{flex:1,overflowY:'auto'}}><div style={{overflowX:'auto'}}>
+      <table style={{width:'100%',borderCollapse:'collapse',fontSize:13}}>
+        <thead><tr>{['id','user_id','message','is_user','created_at'].map(h=><th key={h} style={{background:'rgba(56,189,248,.1)',color:'#38bdf8',padding:'9px 13px',textAlign:'right',fontWeight:700,borderBottom:'1px solid rgba(56,189,248,.2)'}}>{h}</th>)}</tr></thead>
+        <tbody>{chats.length===0?<tr><td colSpan="5" style={{textAlign:'center',padding:24,color:'#374151'}}>لا توجد بيانات في السجل. ابدأ محادثة مع واتر بوت أولاً ←</td></tr>:chats.map(r=>(<tr key={r.id} style={{borderBottom:'1px solid rgba(255,255,255,.04)'}}><td style={{padding:'9px 13px',color:'#38bdf8',fontWeight:700}}>{r.id}</td><td style={{padding:'9px 13px'}}><span style={{background:'rgba(245,158,11,.15)',color:'#f59e0b',borderRadius:10,padding:'2px 8px',fontSize:10,fontWeight:700}}>{r.user_id}</span></td><td style={{padding:'9px 13px',maxWidth:260,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',color:'#e2e8f0'}} title={r.message}>{r.message.slice(0,80)}{r.message.length>80?'...':''}</td><td style={{padding:'9px 13px'}}>{r.is_user?<span style={{background:'rgba(56,189,248,.15)',color:'#38bdf8',borderRadius:10,padding:'2px 8px',fontSize:10,fontWeight:700}}>👤 true</span>:<span style={{background:'rgba(167,139,250,.15)',color:'#a78bfa',borderRadius:10,padding:'2px 8px',fontSize:10,fontWeight:700}}>🤖 false</span>}</td><td style={{padding:'9px 13px',color:'#374151',fontSize:11,whiteSpace:'nowrap'}}>{new Date(r.created_at).toLocaleString('ar-SA')}</td></tr>))}</tbody>
+      </table>
+    </div></div>
+  </div>);
+}
+
+/* ── MAIN APP ── */
+function App(){
+  const [page,setPage]=useState('dash');
+  const [org,setOrg]=useState(cloneTree(INIT_ORG));
+  const [sidebarOpen,setSidebarOpen]=useState(true);
+  const sidebarScrollRef=useRef(null);
+  const savedSidebarScroll=useRef(0);
+  const goTo=useCallback((id)=>{
+    if(sidebarScrollRef.current)savedSidebarScroll.current=sidebarScrollRef.current.scrollTop;
+    setPage(id);
+    if(window.innerWidth<768)setSidebarOpen(false);
+  },[]);
+  useEffect(()=>{
+    if(sidebarScrollRef.current)sidebarScrollRef.current.scrollTop=savedSidebarScroll.current;
+  },[page]);
+  const [time,setTime]=useState(new Date());
+  const [toastState,setToastState]=useState(null);
+  const [notifs,setNotifs]=useState([
+    {id:1,msg:'مرحباً بنظام إدارة مركز المياه والبيئة والطاقة',time:'09:00',read:false},
+    {id:2,msg:'يرجى تحديث بيانات مساعد مدير المركز',time:'09:15',read:false},
+    {id:3,msg:'تم تحديث مؤشرات الجودة بنجاح',time:'10:30',read:true},
+    {id:4,msg:'المساعد الذكي "واتر بوت" جاهز للاستخدام',time:'11:00',read:false},
+  ]);
+  const [showNotifs,setShowNotifs]=useState(false);
+  const [showSearch,setShowSearch]=useState(false);
+  const [searchQ,setSearchQ]=useState('');
+  const [fullscreen,setFullscreen]=useState(false);
+  const [centerLogo,setCenterLogo]=useState(null);
+  const [complaints,setComplaints]=useState([{id:1,title:'بطء شبكة الإنترنت',desc:'الشبكة بطيئة خلال ساعات الذروة',category:'تقني',priority:'متوسط',status:'قيد المعالجة',date:nowStr()}]);
+  const [inquiries,setInquiries]=useState([{id:1,title:'آلية تقديم طلب إجازة',desc:'كيف أقدم طلب الإجازة السنوية؟',category:'إداري',priority:'عادي',status:'مجاب',date:nowStr()}]);
+  const [maintenance,setMaintenance]=useState([{id:1,title:'صيانة مكيف الغرفة 201',desc:'المكيف لا يعمل',category:'كهربائي',priority:'عاجل',status:'قيد المعالجة',date:nowStr()}]);
+  const [community,setCommunity]=useState([{id:1,title:'ورشة تدريب الطلاب الجامعيين',desc:'برنامج تدريب طلاب الجامعة',category:'تدريب',priority:'عادي',status:'مخطط',date:nowStr()}]);
+  const [goals,setGoals]=useState([{id:1,title:'ريادة البحث العلمي التطبيقي',desc:'أن يكون المركز مرجعاً بحثياً وطنياً',category:'استراتيجي',priority:'عالي',status:'جارٍ',date:nowStr()}]);
+
+  useEffect(()=>{const t=setInterval(()=>setTime(new Date()),1000);return()=>clearInterval(t);},[]);
+
+  const toast=(msg,type='info')=>setToastState({msg,type});
+  const unread=notifs.filter(n=>!n.read).length;
+  const allNodes=flatTree(org);
+  const searchResults=searchQ?allNodes.filter(n=>n.name?.includes(searchQ)||n.role?.includes(searchQ)):[];
+
+  const toggleFS=()=>{
+    if(!fullscreen){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}
+    else{document.exitFullscreen&&document.exitFullscreen();}
+    setFullscreen(!fullscreen);
+  };
+
+  const exportData=()=>{
+    const d=JSON.stringify({org,timestamp:new Date().toISOString()},null,2);
+    const b=new Blob([d],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='wee-center-data.json';a.click();
+    toast('تم التصدير ✓','success');
+  };
+
+  const renderPage=()=>{
+    switch(page){
+      case 'dash': return <Dashboard org={org} notifications={notifs} centerLogo={centerLogo}/>;
+      case 'org': return <OrgPage org={org} setOrg={setOrg} toast={toast}/>;
+      case 'researchers': return <ResearchersPage toast={toast}/>;
+      case 'vision': return <VisionPage toast={toast} centerLogo={centerLogo}/>;
+      case 'complaints': return <FormPage title="صندوق الشكاوي" icon="📨" fields={[{key:'title',label:'عنوان الشكوى',req:true},{key:'desc',label:'تفاصيل الشكوى',type:'textarea'},{key:'category',label:'التصنيف',type:'select',opts:['تقني','إداري','مالي','بشري','أخرى']},{key:'priority',label:'الأولوية',type:'select',opts:['عادي','متوسط','عاجل']}]} items={complaints} setItems={setComplaints} toast={toast} statusOpts={['قيد المعالجة','مكتمل','مغلق','عاجل']}/>;
+      case 'inquiries': return <FormPage title="الاستفسارات" icon="❓" fields={[{key:'title',label:'موضوع الاستفسار',req:true},{key:'desc',label:'تفاصيل الاستفسار',type:'textarea'},{key:'category',label:'القسم',type:'select',opts:['إداري','مالي','تقني','بشري','أكاديمي']}]} items={inquiries} setItems={setInquiries} toast={toast} statusOpts={['قيد المراجعة','مجاب','مؤجل','مغلق']}/>;
+      case 'satisfaction': return <SatisfactionPage toast={toast}/>;
+      case 'maintenance': return <FormPage title="طلبات الصيانة" icon="🔧" fields={[{key:'title',label:'عنوان الطلب',req:true},{key:'desc',label:'وصف المشكلة',type:'textarea'},{key:'category',label:'نوع الصيانة',type:'select',opts:['كهربائي','ميكانيكي','تقني','مدني','أخرى']},{key:'priority',label:'الأولوية',type:'select',opts:['عادي','عاجل','طارئ']}]} items={maintenance} setItems={setMaintenance} toast={toast} statusOpts={['قيد المعالجة','مجدول','مكتمل','عاجل']}/>;
+      case 'community': return <FormPage title="خدمة المجتمع المحلي" icon="🌍" fields={[{key:'title',label:'عنوان المبادرة',req:true},{key:'desc',label:'وصف المبادرة',type:'textarea'},{key:'category',label:'النوع',type:'select',opts:['تدريب','توعية','شراكة','تطوع','أخرى']}]} items={community} setItems={setCommunity} toast={toast} statusOpts={['مخطط','جارٍ','مكتمل','مؤجل']}/>;
+      case 'challenges': return <ChallengesPage toast={toast}/>;
+      case 'improvement': return <ImprovementPage toast={toast}/>;
+      case 'targets': return <TargetsPage/>;
+      case 'goals': return <FormPage title="الأهداف المرجوة" icon="⭐" fields={[{key:'title',label:'الهدف',req:true},{key:'desc',label:'توصيف الهدف',type:'textarea'},{key:'category',label:'التصنيف',type:'select',opts:['استراتيجي','بحثي','تشغيلي','تنموي']},{key:'priority',label:'الأهمية',type:'select',opts:['عالي','متوسط','منخفض']}]} items={goals} setItems={setGoals} toast={toast} statusOpts={['مخطط','جارٍ','مكتمل','مؤجل']}/>;
+      case 'quality': return <QualityPage/>;
+      case 'files': return <FilesPage toast={toast}/>;
+      case 'transfer': return <TransferPage org={org} toast={toast}/>;
+      case 'social': return <SocialPage toast={toast}/>;
+      case 'chatbot': return <ChatbotPage toast={toast}/>;
+      case 'conduct': return <ConductPage/>;
+      case 'integrity': return <IntegrityPage/>;
+      case 'voice': return <VoicePage toast={toast}/>;
+      case 'aichats': return <AIChatsPage toast={toast}/>;
+      case 'settings': return <SettingsPage toast={toast} centerLogo={centerLogo} setCenterLogo={setCenterLogo}/>;
+      default: return <Dashboard org={org} notifications={notifs} centerLogo={centerLogo}/>;
+    }
+  };
+
+  const curPage=NAV.flatMap(s=>s.items).find(n=>n.id===page);
+
+  return(
+    <div dir="rtl" style={{display:'flex',height:'100vh',color:'#e2e8f0',overflow:'hidden',position:'relative',background:'#030b18'}}>
+      {/* SIDEBAR */}
+      <div className="sidebar" style={{width:sidebarOpen?242:0,minWidth:sidebarOpen?242:0,background:'rgba(3,9,20,.97)',borderLeft:'1px solid rgba(26,122,138,.14)',transition:'all .3s ease',overflow:'hidden',display:'flex',flexDirection:'column',zIndex:100,backdropFilter:'blur(20px)'}}>
+        <div style={{padding:'16px 14px',borderBottom:'1px solid rgba(26,122,138,.11)',flexShrink:0}}>
+          <div style={{display:'flex',alignItems:'center',gap:10}}>
+            <div style={{width:40,height:40,borderRadius:12,background:'linear-gradient(135deg,#0e7490,#38bdf8)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:20,flexShrink:0,overflow:'hidden'}}>
+              {centerLogo?<img src={centerLogo} alt="" style={{width:'100%',height:'100%',objectFit:'contain',padding:4}}/>:'💧'}
+            </div>
+            <div>
+              <div style={{color:'#38bdf8',fontWeight:900,fontSize:12,lineHeight:1.3,whiteSpace:'nowrap'}}>مركز المياه والبيئة</div>
+              <div style={{color:'#334155',fontSize:10}}>والطاقة — الجامعة الأردنية</div>
+            </div>
+          </div>
+        </div>
+        <div ref={sidebarScrollRef} style={{flex:1,overflowY:'auto',padding:'6px 0'}}>
+          {NAV.map(sec=>(
+            <div key={sec.sec}>
+              <span className="ss-lbl">{sec.sec}</span>
+              {sec.items.map(({id,label,e})=>(
+                <div key={id} className={`sl ${page===id?'act':''}`} onClick={()=>goTo(id)} style={{display:'flex',alignItems:'center',gap:10,padding:'10px 14px',color:page===id?'#38bdf8':'#64748b',fontSize:13,fontWeight:page===id?700:400}}>
+                  <span style={{fontSize:16,flexShrink:0}}>{e}</span>
+                  <span style={{whiteSpace:'nowrap'}}>{label}</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div style={{padding:'9px 14px',borderTop:'1px solid rgba(26,122,138,.1)',fontSize:10,color:'#1e3a5f'}}>
+          <div>نظام الإدارة الرقمية المتكامل</div>
+          <div style={{color:'#0e7490'}}>WEE Center v3.1 © 2025 — الجامعة الأردنية</div>
+        </div>
+      </div>
+
+      {/* MAIN */}
+      <div style={{flex:1,display:'flex',flexDirection:'column',overflow:'hidden'}}>
+        {/* HEADER */}
+        <div style={{height:58,background:'rgba(3,9,20,.97)',borderBottom:'1px solid rgba(26,122,138,.11)',display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 12px',flexShrink:0,backdropFilter:'blur(16px)',zIndex:90}}>
+          <div style={{display:'flex',alignItems:'center',gap:10}}>
+            <button onClick={()=>setSidebarOpen(!sidebarOpen)} style={{background:'rgba(56,189,248,.07)',border:'1px solid rgba(56,189,248,.16)',borderRadius:8,padding:'7px 10px',cursor:'pointer',color:'#38bdf8',fontSize:17,fontFamily:'Tajawal,sans-serif'}}>☰</button>
+            {curPage&&<div style={{color:'#e2e8f0',fontWeight:700,fontSize:14,display:'flex',gap:7,alignItems:'center'}}>
+              <span style={{fontSize:17}}>{curPage.e}</span>
+              <span style={{display:'none'}}>{curPage.label}</span>
+            </div>}
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:7}}>
+            {/* Clock */}
+            <div style={{display:'flex',alignItems:'center',gap:5,background:'rgba(56,189,248,.06)',border:'1px solid rgba(56,189,248,.14)',borderRadius:9,padding:'5px 10px',flexShrink:0}}>
+              <span style={{fontSize:13}}>🕐</span>
+              <span style={{color:'#38bdf8',fontWeight:800,fontSize:13,minWidth:62,fontVariantNumeric:'tabular-nums'}}>{time.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}</span>
+            </div>
+            {/* Search */}
+            <div style={{position:'relative'}}>
+              <button onClick={()=>setShowSearch(!showSearch)} style={{background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:9,padding:'7px 10px',cursor:'pointer',color:'#64748b',fontSize:16,fontFamily:'Tajawal,sans-serif'}}>🔍</button>
+              {showSearch&&(
+                <div style={{position:'absolute',top:'112%',left:0,background:'#060f1e',border:'1px solid rgba(56,189,248,.22)',borderRadius:12,padding:12,width:260,zIndex:200,boxShadow:'0 20px 60px rgba(0,0,0,.7)'}}>
+                  <input autoFocus value={searchQ} onChange={e=>setSearchQ(e.target.value)} placeholder="بحث عن موظف أو دور..." className="inp" style={{marginBottom:searchResults.length?9:0,fontSize:13}}/>
+                  {searchResults.map(n=>(
+                    <div key={n.id} onClick={()=>{setPage('org');setShowSearch(false);setSearchQ('');}} style={{display:'flex',gap:9,padding:'8px 4px',cursor:'pointer',borderBottom:'1px solid rgba(255,255,255,.04)',alignItems:'center'}}>
+                      <span style={{fontSize:15}}>👤</span>
+                      <div><div style={{color:'#e2e8f0',fontSize:13,fontWeight:600}}>{n.role}</div><div style={{color:'#64748b',fontSize:11}}>{n.name||'شاغر'}</div></div>
+                    </div>
+                  ))}
+                  {searchQ&&!searchResults.length&&<div style={{color:'#475569',fontSize:12,textAlign:'center',padding:8}}>لا توجد نتائج</div>}
+                </div>
+              )}
+            </div>
+            {/* Notifs */}
+            <div style={{position:'relative'}}>
+              <button onClick={()=>setShowNotifs(!showNotifs)} style={{background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:9,padding:'7px 10px',cursor:'pointer',color:'#64748b',position:'relative',fontSize:16,fontFamily:'Tajawal,sans-serif'}}>
+                🔔
+                {unread>0&&<span className="bdg">{unread}</span>}
+              </button>
+              {showNotifs&&(
+                <div style={{position:'absolute',top:'112%',left:0,background:'#060f1e',border:'1px solid rgba(56,189,248,.2)',borderRadius:13,width:295,zIndex:200,boxShadow:'0 20px 60px rgba(0,0,0,.7)',overflow:'hidden'}}>
+                  <div style={{padding:'12px 14px',borderBottom:'1px solid rgba(255,255,255,.05)',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                    <span style={{color:'#38bdf8',fontWeight:800,fontSize:14}}>🔔 الإشعارات</span>
+                    <button onClick={()=>{setNotifs(p=>p.map(n=>({...n,read:true})));toast('تم تحديد الكل مقروءاً ✓','success');}} style={{background:'rgba(56,189,248,.1)',border:'none',borderRadius:8,padding:'4px 9px',cursor:'pointer',color:'#38bdf8',fontSize:12,fontFamily:'Tajawal,sans-serif'}}>تحديد الكل</button>
+                  </div>
+                  <div style={{maxHeight:250,overflowY:'auto'}}>
+                    {notifs.map(n=>(
+                      <div key={n.id} onClick={()=>setNotifs(p=>p.map(nn=>nn.id===n.id?{...nn,read:true}:nn))} style={{padding:'11px 14px',borderBottom:'1px solid rgba(255,255,255,.03)',background:n.read?'transparent':'rgba(56,189,248,.05)',cursor:'pointer',display:'flex',gap:9,alignItems:'flex-start'}}>
+                        <div style={{width:7,height:7,borderRadius:'50%',background:n.read?'transparent':'#38bdf8',marginTop:5,flexShrink:0}}/>
+                        <div style={{flex:1}}><div style={{color:n.read?'#475569':'#e2e8f0',fontSize:12.5,lineHeight:1.5}}>{n.msg}</div><div style={{color:'#334155',fontSize:11,marginTop:2}}>{n.time}</div></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            <button onClick={exportData} style={{background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:9,padding:'7px 10px',cursor:'pointer',color:'#64748b',fontSize:16,fontFamily:'Tajawal,sans-serif'}} title="تصدير">⬇️</button>
+            <button onClick={toggleFS} style={{background:'rgba(255,255,255,.04)',border:'1px solid rgba(255,255,255,.07)',borderRadius:9,padding:'7px 10px',cursor:'pointer',color:'#64748b',fontSize:15,fontFamily:'Tajawal,sans-serif'}} title="ملء الشاشة">{fullscreen?'⊡':'⊞'}</button>
+          </div>
+        </div>
+        {/* PAGE CONTENT */}
+        <div style={{flex:1,overflow:'hidden'}} onClick={()=>{if(showNotifs)setShowNotifs(false);if(showSearch)setShowSearch(false);}}>
+          {renderPage()}
+        </div>
+      </div>
+      <Toast t={toastState} onClose={()=>setToastState(null)}/>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحتي المتكاملة</title>
+    <style>
+        /* CSS داخل نفس الملف */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>مرحباً بك في صفحة نموذجية</h1>
+        <p>هذه صفحة تجمع HTML لهيكل المحتوى، CSS للتنسيق، وJavaScript للتفاعل.</p>
+        <button id="clickBtn">اضغط هنا</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // JavaScript داخل نفس الملف
+        const button = document.getElementById('clickBtn');
+        const messageDiv = document.getElementById('message');
+
+        button.addEventListener('click', function() {
+            const now = new Date();
+            messageDiv.innerHTML = `تم الضغط في الساعة ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+        });
+    </script>
+</body>
+</html><uses-permission android:name="android.permission.INTERNET" /><?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:tabMode="scrollable"
+        app:tabGravity="fill"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/urlInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="أدخل رابط الموقع"
+            android:inputType="textUri"
+            android:imeOptions="actionGo" />
+
+        <Button
+            android:id="@+id/goButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="فتح" />
+
+        <Button
+            android:id="@+id/newTabButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="تبويب جديد" />
+    </LinearLayout>
+</LinearLayout><?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:max="100" />
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>public class MainActivity extends AppCompatActivity {
+   🔗 https://wee-center.netlify.app/wee-center-complete.zip
